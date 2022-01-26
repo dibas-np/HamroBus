@@ -1,19 +1,15 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import Cookie from 'react-cookie';
-import CSRFToken from "./csrftoken";
-import AddRoute from "./AddRoute";
+// import React, { Component } from "react";
+// import { render } from "react-dom";
+// import AddRoute from "./AddRoute";
+// export default class Route extends Component {
+//     constructor(props) {
+//         super(props);
+//     }
 
-export default class Route extends Component {
-    constructor(props) {
-        super(props);
-    }
+//     render() {
+//             // <AddRoute />
+//         }
+// }
 
-    render() {
-            <AddRoute />
-        }
-}
-
-const appDiv = document.getElementById("routeView");
-
-render( < Route / > , appDiv);
+// const routeDiv = document.getElementById("routeView");
+// render( < Route / > , routeDiv);

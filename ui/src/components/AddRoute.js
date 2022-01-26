@@ -1,29 +1,16 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ListGroup, Card, Button, Form } from "react-bootstrap";
 import API from "./API";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// name = models.CharField(max_length = 100)
-// departureLocation = models.CharField(max_length = 50, choices = LocationChoices,
-//   default = "Kathmandu")
-// destinationLocation = models.CharField(max_length = 50, choices = LocationChoices,
-//   default = "Pokhara")
-// departureTime = models.TimeField(
-//   default = '00:00:00')
-// arrivalTime = models.TimeField(
-//   default = '00:00:00')
-// departureDate = models.DateField()
-// price = models.IntegerField()
-// vehicleID = models.CharField(max_length = 50)
-// vehicleType = models.CharField(max_length = 5, choices = VEHICLE_CHOICES,
-//   default = "Bus")
 const AddRoute = ({ onAdd }) => {
   const [name, setName] = useState("");
   const [departureLocation, setDepartureLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
-  const [departureTime, setDepartureTime] = useState(null);
-  const [arrivalTime, setArrivalTime] = useState(null);
-  const [departureDate, setDepartureDate] = useState(null);
-  const [price, setPrice] = useState(null);
+  const [departureTime, setDepartureTime] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [price, setPrice] = useState(400);
   const [vehicleID, setVehicleID] = useState("");
   const [vehicleType, setVehicleType] = useState("");
   const [routes, setRoutes] = useState([]);
@@ -37,10 +24,6 @@ const AddRoute = ({ onAdd }) => {
     API.get("/")
       .then((res) => {
         setRoutes(res.data);
-        // setName(res[0].name)
-        // setGenre(res[0].genre)
-        // setStarring(res[0].starring)
-        // setMovieId(res[0].id)
       })
       .catch(console.error);
   };
@@ -135,7 +118,7 @@ const AddRoute = ({ onAdd }) => {
               <Form.Control
                 type="date"
                 placeholder="Departure Date"
-                value={destinationLocation}
+                value={departureDate}
                 onChange={(e) => setDepartureDate(e.target.value)}
               />
             </Form.Group> 
@@ -145,7 +128,7 @@ const AddRoute = ({ onAdd }) => {
               <Form.Control
                 type="number"
                 placeholder="Enter Fare Price"
-                value={destinationLocation}
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group> 
@@ -191,7 +174,7 @@ const AddRoute = ({ onAdd }) => {
           </Form>
         </div>
         <div className="col-md-8 m">
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -204,6 +187,7 @@ const AddRoute = ({ onAdd }) => {
                 <th scope="col">Price</th>
                 <th scope="col">Vehicle ID</th>
                 <th scope="col">Vehicle Type</th>
+                <th scope="col">Action</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -213,7 +197,7 @@ const AddRoute = ({ onAdd }) => {
                   <tr key="">
                     <th scope="row">{route.id}</th>
                     <td> {route.name}</td>
-                    <td> {route.destinationLocation}</td>\
+                    <td> {route.destinationLocation}</td>
                     <td> {route.departureLocation}</td>
                     <td> {route.departureTime}</td>
                     <td> {route.arrivalTime}</td>
@@ -243,5 +227,4 @@ const AddRoute = ({ onAdd }) => {
     </div>
   );
 };
-
 export default AddRoute;

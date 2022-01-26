@@ -1,17 +1,23 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import Login from "./Login";
+import React from 'react';
+import Navbar from './Navbar';
+import { BrowserRouter as Router, Routes, Route}
+from 'react-router-dom';
+import Home from './home';
+import AddRoute from './AddRoute';
 
-export default class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return <h1> Testing React Code</h1>
-    }
+function App() {
+return (
+<Router>
+    <Navbar />
+    <Routes>
+        <Route exact path='/' exact element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/route' element={<AddRoute />} />
+        {/* <Route path='/blogs' element={<Blogs />} />
+        <Route path='/sign-up' element={<SignUp />} /> */}
+    </Routes>
+</Router>
+);
 }
 
-// const appDiv = document.getElementById("app");
-
-// render(<App / > , appDiv);
+export default App;

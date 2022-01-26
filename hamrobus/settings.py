@@ -132,6 +132,7 @@ STATICFILES_DIRS = [
     "ui/static/css/",
     "ui/static/images/",
     "ui/static/js/",
+    "ui/src/components/",
 
 ]
 
