@@ -34,5 +34,5 @@ export default class Login extends Component {
 }
 }
 
-const appDiv = document.getElementById("Loginform");
-render(<Login/> , appDiv);
+// const appDiv = document.getElementById("Loginform");
+// render(<Login/> , appDiv);

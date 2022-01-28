@@ -16,7 +16,6 @@ class Route(models.Model):
     departureDate = models.DateField()
     price = models.IntegerField()
     vehicleID = models.CharField(max_length=50)
-    vehicleType = models.CharField(max_length=5,choices=VEHICLE_CHOICES,default="Bus")
-    
+   
     def __str__(self):
         return self.name
