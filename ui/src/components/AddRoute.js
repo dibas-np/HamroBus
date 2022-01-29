@@ -47,7 +47,28 @@ const AddRoute = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     let item = { name, departureLocation, destinationLocation, departureTime, arrivalTime, departureDate, price, vehicleID };
-    API.post("routes/", item).then(() => refreshRoutes());
+    swal({
+        title: "Add Route",
+        text: "Are you sure you want to add new route?",
+        icon: "info",
+        buttons: true,
+        dangerMode: false,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          API.post("routes/", item).then(() => refreshRoutes());
+          clearSelect();
+          setDisable(false);
+          swal("Route has been added successfully!", {
+            icon: "success",
+          });
+        } else {
+          swal("Route wasn't added!");
+          clearSelect();
+          setDisable(false);
+        }
+      });
+    // API.post("routes/", item).then(() => refreshRoutes());
   };
 
   const onUpdate = (id) => {
@@ -517,7 +538,8 @@ const AddRoute = ({ onAdd }) => {
 
             <div className="float-right">
               <Button
-                variant="primary"
+                variant="outline-info"
+                class="btn btn-outline-info"
                 type="submit"
                 disabled={disable}
                 onClick={onSubmit}
@@ -526,7 +548,8 @@ const AddRoute = ({ onAdd }) => {
                 Add
               </Button>
               <Button
-                variant="primary"
+                variant="outline-warning"
+                class="btn-warning"
                 type="button"
                 onClick={() => onUpdate(routeID)}
                 className="mx-2"
@@ -537,36 +560,36 @@ const AddRoute = ({ onAdd }) => {
           </Form>
         </div>
         <div className="col-md-8 m">
-          <table className="table table-striped">
+          <table className="table table-striped table-bordered table-hover">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Company Name</th>
-                <th scope="col">Departure</th>
-                <th scope="col">Destination</th>
-                <th scope="col">Departure</th>
-                <th scope="col">Arrival</th>
-                <th scope="col">Departure Date</th>
-                <th scope="col">Price</th>
+                <th className="table-light" scope="col">ID</th>
+                <th className="table-light" scope="col">Company Name</th>
+                <th className="table-light" scope="col">Departure</th>
+                <th className="table-light" scope="col">Destination</th>
+                <th className="table-light" scope="col">Departure</th>
+                <th className="table-light" scope="col">Arrival</th>
+                <th className="table-light" scope="col">Departure Date</th>
+                <th className="table-light" scope="col">Price</th>
                 {/* <th scope="col">Vehicle ID</th> */}
-                <th scope="col">Action</th>
-                <th scope="col"></th>
+                <th className="table-light" scope="col">Action</th>
+                {/* <th scope="col"></th> */}
               </tr>
             </thead>
             <tbody>
               {routes.map((route, index) => {
                 return (
                   <tr key="">
-                    <th scope="row">{route.vehicleID}</th>
-                    <td> {route.name}</td>
-                    <td> {route.destinationLocation}</td>
-                    <td> {route.departureLocation}</td>
-                    <td> {route.departureTime}</td>
-                    <td> {route.arrivalTime}</td>
-                    <td> {route.departureDate}</td>
-                    <td> {route.price}</td>
+                    <th className="table-light" scope="row">{route.vehicleID}</th>
+                    <td className="table-light"> {route.name}</td>
+                    <td className="table-light"> {route.destinationLocation}</td>
+                    <td className="table-light"> {route.departureLocation}</td>
+                    <td className="table-light"> {route.departureTime}</td>
+                    <td className="table-light"> {route.arrivalTime}</td>
+                    <td className="table-light"> {route.departureDate}</td>
+                    <td className="table-light"> {route.price}</td>
                     {/* <td> {route.vehicleID}</td> */}
-                    <td>
+                    <td className="table-light">
                       <i
                         className="fa fa-pencil-square text-primary d-inline"
                         aria-hidden="true"
