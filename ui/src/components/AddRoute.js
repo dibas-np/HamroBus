@@ -146,7 +146,7 @@ const AddRoute = ({ onAdd }) => {
   }
 
   return (
-    <div className = "container mt-5">
+    <div className = "container mt-5 routeContainer">
       <Helmet>
         <title> {TITLE} </title> 
       </Helmet>
