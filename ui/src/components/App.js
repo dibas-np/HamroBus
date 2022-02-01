@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route}
 from 'react-router-dom';
 import Home from './home';
+import Result from './Result';
 import AddRoute from './AddRoute';
 
 function App() {
@@ -13,6 +14,7 @@ return (
         <Route exact path='/' exact element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/route' element={<AddRoute />} />
+        <Route exact path='/result/:from/:destination' element={<Result />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
     </Routes>

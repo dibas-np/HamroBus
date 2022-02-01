@@ -1,8 +1,10 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { Button } from 'react-bootstrap';
+import { red } from '@mui/material/colors';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const options = ['Option 1', 'Option 2'];
 const LocationOptions=[
   'achham',
   'arghakhanchi',
@@ -80,30 +82,72 @@ const LocationOptions=[
   'terhathum',
   'udayapur'
 ]
-export default function ControllableStates() {
-  const [value, setValue] = React.useState(LocationOptions[0]);
-  const [inputValue, setInputValue] = React.useState('');
-
+export default function SearchBox() {
+  const navigate = useNavigate();
+  const [destination, setDestination] = React.useState(LocationOptions[0]);
+  const [inputDestination, setInputDestination] = React.useState('');
+  const [departure, setDeparture] = React.useState(LocationOptions[10]);
+  const [inputDeparture, setInputDeparture] = React.useState('');
+  const onSubmit = (e) => {
+    e.preventDefault();
+      if (inputDestination != null && inputDeparture != null) {
+        navigate('/result/' + inputDeparture + '/' + inputDestination);
+      };
+  };
   return (
-    <div>
-      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-      <div>{`inputValue: '${inputValue}'`}</div>
-      <br />
-      <Autocomplete
-        value={value}
-        onChange={(event, newValue) => {
-            console.log(newValue);
-          setValue(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="controllable-states-demo"
-        options={LocationOptions}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
-      />
+    <div className = 'input-group border border-success d-flex justify-content-center'
+    id = "search-box" >
+      < div className='input-group-prepend search-comp' >
+        <Autocomplete
+          value={departure}
+          onChange={(event, newDepartureValue) => {
+              console.log(newDepartureValue);
+            setDeparture(newDepartureValue);
+          }}
+          inputDeparture={inputDeparture}
+          onInputChange={(event, newInputDepartureValue) => {
+            setInputDeparture(newInputDepartureValue);
+          }}
+          id="search-box-from"
+          options={LocationOptions}
+          sx = {
+            {
+              width: 300
+            }
+          }
+          renderInput={(params) => <TextField {...params} label="From" />}
+        />
+      </div>
+      < div className = 'input-group-prepend search-comp' >
+        <Autocomplete
+          value={destination}
+          onChange={(event, newDestinationValue) => {
+              console.log(newDestinationValue);
+            setDestination(newDestinationValue);
+          }}
+          inputDestination={inputDestination}
+          onInputChange={(event, newInputDestinationValue) => {
+            setInputDestination(newInputDestinationValue);
+          }}
+          id="search-box-destination"
+          options={LocationOptions}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Destination" />}
+        />
     </div>
+    <div className='input-group-prepend search-button search-comp'>
+      <Button
+        variant="outline-info"
+        class="btn btn-outline-info"
+        type="submit"
+        // disabled={disable}
+        onClick={onSubmit}
+        size="lg"
+      >
+        Search
+      </Button>
+    </div>
+  </div>
+    
   );
 }
