@@ -85,13 +85,14 @@ const LocationOptions=[
 export default function SearchBox() {
   const navigate = useNavigate();
   const [destination, setDestination] = React.useState(LocationOptions[0]);
-  const [inputDestination, setInputDestination] = React.useState('');
+  const [inputdestination, setInputDestination] = React.useState('');
   const [departure, setDeparture] = React.useState(LocationOptions[10]);
-  const [inputDeparture, setInputDeparture] = React.useState('');
+  const [inputdeparture, setInputDeparture] = React.useState('');
+  
   const onSubmit = (e) => {
     e.preventDefault();
-      if (inputDestination != null && inputDeparture != null) {
-        navigate('/result/' + inputDeparture + '/' + inputDestination);
+      if (inputdestination != null && inputdeparture != null) {
+        navigate('/result/' + inputdeparture + '/' + inputdestination);
       };
   };
   return (
@@ -104,7 +105,7 @@ export default function SearchBox() {
               console.log(newDepartureValue);
             setDeparture(newDepartureValue);
           }}
-          inputDeparture={inputDeparture}
+          inputdeparture={inputdeparture}
           onInputChange={(event, newInputDepartureValue) => {
             setInputDeparture(newInputDepartureValue);
           }}
@@ -125,7 +126,7 @@ export default function SearchBox() {
               console.log(newDestinationValue);
             setDestination(newDestinationValue);
           }}
-          inputDestination={inputDestination}
+          inputdestination={inputdestination}
           onInputChange={(event, newInputDestinationValue) => {
             setInputDestination(newInputDestinationValue);
           }}
@@ -138,7 +139,7 @@ export default function SearchBox() {
     <div className='input-group-prepend search-button search-comp'>
       <Button
         variant="outline-info"
-        class="btn btn-outline-info"
+        className="btn btn-outline-info"
         type="submit"
         // disabled={disable}
         onClick={onSubmit}

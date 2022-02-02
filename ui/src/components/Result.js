@@ -409,7 +409,7 @@ let loaded = true;
               {routes.map((route, index) => {
                 return (
                   route.departureLocation === from && route.destinationLocation === destination ?
-                  <tr key="">
+                  <tr key={index}>
                     <th className="table-light" scope="row">{route.vehicleID}</th>
                     <td className="table-light"> {route.name}</td>
                     <td className="table-light"> {route.destinationLocation}</td>
