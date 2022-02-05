@@ -17,7 +17,7 @@ const Result = () => {
 //   const [departureDate, setDepartureDate] = useState("");
 //   const [price, setPrice] = useState(400);
 //   const [vehicleID, setVehicleID] = useState("");
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
   const { from, destination } = useParams();
   const [departureLocation, setDepartureLocation] = useState(from);
@@ -403,6 +403,7 @@ let loaded = true;
                 <th className="table-light" scope="col">Arrival</th>
                 <th className="table-light" scope="col">Departure Date</th>
                 <th className="table-light" scope="col">Price</th>
+                <th className="table-light" scope="col">Book Now</th>
               </tr>
             </thead>
             <tbody>
@@ -418,6 +419,13 @@ let loaded = true;
                     <td className="table-light"> {route.arrivalTime}</td>
                     <td className="table-light"> {route.departureDate}</td>
                     <td className="table-light"> {route.price}</td>
+                    <td className="table-light" style={{cursor: "pointer"}}>
+                      <i
+                        className="fa fa-ticket text-danger d-inline mx-3"
+                        aria-hidden="true"
+                        onClick={() => navigate(`/book/${route.id}`)}
+                      ></i>
+                    </td>
                   </tr>
                   : null
                 );

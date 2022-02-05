@@ -1,0 +1,22 @@
+.Seat-picker {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.Seat {
+    width: 60px !important;
+    height: 60px !important;    
+}
+
+.Seat {
+    border-radius: 4px;
+}
+
+.SeatNumber {
+    font-size: 18px !important;
+}
+
+.Row:hover{
+    background-color: #f5f5f5;
+
+}
