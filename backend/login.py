@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
-
+from .signupform import LoggedUserForm
+from .models import LoggedUser
 
 #login view
 @ensure_csrf_cookie
@@ -14,14 +15,18 @@ def login_view(request):
     # if request.user.is_authenticated:
         # return redirect('login')#to be replaced with home page
     # else:
+         
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
 
             user = authenticate(request,username=username, password=password)
-
+            
             if user is not None:
                 login(request,user)
+                logged = LoggedUser.objects.get(userid=1) 
+                logged.username = request.user.username
+                logged.save()              
                 return redirect('signup')
             else:
                 messages.info(request,"Username OR Password is incorrect!")
@@ -32,5 +37,8 @@ def login_view(request):
 
 # @ogin_required(login_url='login')
 def logout_view(request):
-    logout(request)
+    logged = LoggedUser.objects.get(userid=1)
+    logged.username = "" 
+    logged.save()     
+    logout(request)        
     return redirect('login')

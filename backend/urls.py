@@ -6,6 +6,7 @@ from backend.home import homeView
 
 router = DefaultRouter()
 router.register(r'routes', views.RouteViewSet, basename='route')
+router.register(r'users', views.UserViewSet, basename='user')
 urlpatterns = router.urls
 
 urlpatterns += [
