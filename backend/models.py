@@ -46,13 +46,7 @@ class Route(models.Model):
     seat28 = models.BooleanField(default=False)
     seat29 = models.BooleanField(default=False)
     seat30 = models.BooleanField(default=False)
-    seat31 = models.BooleanField(default=False)
-    seat32 = models.BooleanField(default=False)
-    seat33 = models.BooleanField(default=False)
-    seat34 = models.BooleanField(default=False)
-    seat35 = models.BooleanField(default=False)
-    seat36 = models.BooleanField(default=False)
-   
+
     def __str__(self):
         return self.name
 
