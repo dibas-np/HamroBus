@@ -2,13 +2,17 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Route, LoggedUser
+from .models import Route, LoggedUser, Ticket
 # Register your models here.
 
-class MovieAdmin(admin.ModelAdmin):
+class RouteAdmin(admin.ModelAdmin):
     list = ('name', 'departure', 'destination', 'price', 'departureDate', 'vehicle', 'vehicleID')
     admin.site.register(Route)
 
 class LoggedAdmin(admin.ModelAdmin):
     list = ('username')
     admin.site.register(LoggedUser)
+
+class TicketAdmin(admin.ModelAdmin):
+    list = ('username','routeID','bookedseats')
+    admin.site.register(Ticket)
