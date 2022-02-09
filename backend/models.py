@@ -58,10 +58,12 @@ class LoggedUser(models.Model):
         return self.username
 
 class Ticket(models.Model):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50,default="dibas")
     routeId = models.IntegerField()
     bookedSeat1 = models.CharField(max_length=10,default="")
     bookedSeat2 = models.CharField(max_length=10,default="")
+    payment = models.BooleanField(default=False)
+    amount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username
