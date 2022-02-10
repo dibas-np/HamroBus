@@ -6,6 +6,8 @@ import Home from './home';
 import Result from './Result';
 import AddRoute from './AddRoute';
 import Book from './Book';
+import Tickets from './Tickets';
+import Success  from './success';
 
 function App() {
 return (
@@ -17,6 +19,8 @@ return (
         <Route path='/route' element={<AddRoute />} />
         <Route exact path='/result/:from/:destination' element={<Result />} />
         <Route exact path='/book/:id' element={<Book />} />
+        <Route path='/ticket' element={<Tickets />} />
+        <Route exact path=':slug' element={<Success />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
     </Routes>

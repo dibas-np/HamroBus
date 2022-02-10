@@ -23,6 +23,15 @@ return (
             } >
                 Add Route
             </NavLink>
+
+            <NavLink to="/ticket"
+            activeStyle = {
+                {
+                    color: 'red'
+                }
+            } >
+                Tickets
+            </NavLink>
             {/* <NavLink to="/blogs" activeStyle>
                 Blogs
             </NavLink>

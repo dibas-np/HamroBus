@@ -64,6 +64,13 @@ class Ticket(models.Model):
     bookedSeat2 = models.CharField(max_length=10,default="")
     payment = models.BooleanField(default=False)
     amount = models.IntegerField(default=0)
+    departureLocation = models.CharField(max_length=50,choices=LocationChoices,default="Kathmandu")
+    destinationLocation = models.CharField(max_length=50,choices=LocationChoices,default="Pokhara")
+    departureTime = models.TimeField(default='00:00:00')
+    arrivalTime = models.TimeField(default='00:00:00')
+    departureDate = models.DateField()
+    vehicleID = models.CharField(max_length=50)
+    
 
     def __str__(self):
         return self.username

@@ -14,5 +14,5 @@ class LoggedAdmin(admin.ModelAdmin):
     admin.site.register(LoggedUser)
 
 class TicketAdmin(admin.ModelAdmin):
-    list = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount')
+    list = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destination','departure','arrival')
     admin.site.register(Ticket)

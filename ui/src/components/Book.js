@@ -751,6 +751,12 @@ const Book = () => {
               setSeat28(res.data[i].seat28);
               setSeat29(res.data[i].seat29);
               setSeat30(res.data[i].seat30);
+              setDepartureDate(res.data[i].departureDate);
+              setDepartureTime(res.data[i].departureTime);
+              setArrivalTime(res.data[i].arrivalTime);
+              setVehicleID(res.data[i].vehicleID);
+              setDepartureLocation(res.data[i].departureLocation);
+              setDestinationLocation(res.data[i].destinationLocation);
             } 
           }
         })
@@ -805,7 +811,13 @@ const Book = () => {
        routeId,
        bookedSeat1:actualbookedseat1,
        bookedSeat2:actualbookedseat2,
-       amount
+       amount,
+       departureLocation,
+       destinationLocation,
+       departureTime,
+        arrivalTime,
+        departureDate,
+        vehicleID
       };
       swal({
           title: "Book Ticket",
@@ -816,8 +828,12 @@ const Book = () => {
         })
         .then((willDelete) => {
           if (willDelete) {
-            // API.post("tickets/", item).then(() => refreshRoutes());
+            API.post("tickets/", item).then(() => refreshRoutes());
+            console.log("Seat 1"+seat1);
+            console.log("Seat 2"+seat2);
             onUpdate(routeID);
+            console.log("Seat 1" + seat1);
+            console.log("Seat 2" + seat2);
             setDisable(false);
             swal("You have successfully booked the ticket(s)!", {
               icon: "success",
