@@ -2,6 +2,7 @@ import axios from 'axios';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.withCredentials = true
 
 function getCookie(name) {
     var cookieValue = null;
@@ -19,8 +20,6 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-
- 
  import React from 'react';
 
  var csrftoken = getCookie('csrftoken');
