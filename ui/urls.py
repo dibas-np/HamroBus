@@ -11,12 +11,12 @@ app_name = "ui"
 urlpatterns = [
     path('login/', login_view),
     path('logout/', logout_view),
-    # path('/', login_required((homeView),login_url='login')),
-    path('/',homeView),
+    path('/', login_required((homeView),login_url='login')),
+    # path('/',homeView),
     # match the root
     re_path(r'^$', homeView),
     # match all other pages
-    # re_path(r'^(?:.*)/?$', login_required((homeView),login_url='login')),
-    re_path(r'^(?:.*)/?$', homeView)
+    re_path(r'^(?:.*)/?$', login_required((homeView),login_url='login')),
+    # re_path(r'^(?:.*)/?$', homeView)
 
 ]
