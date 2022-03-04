@@ -8,6 +8,7 @@ import AddRoute from './AddRoute';
 import Book from './Book';
 import Tickets from './Tickets';
 import Success  from './success';
+import PageNotFound from './404page';
 
 function App() {
 return (
@@ -20,9 +21,10 @@ return (
         <Route exact path='/result/:from/:destination' element={<Result />} />
         <Route exact path='/book/:id' element={<Book />} />
         <Route path='/ticket' element={<Tickets />} />
-        <Route exact path=':slug' element={<Success />} />
+        <Route exact path='/success/:slug' element={<Success />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
+        <Route path='*' element={<PageNotFound />} />
     </Routes>
 </Router>
 );

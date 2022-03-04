@@ -7,10 +7,9 @@ from django.contrib import messages
 
 #signup view
 def signup_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect('login')
-        #to be replaced with home page later
-    # else:
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
         form = SignupForm()
         if request.method== 'POST':
             form = SignupForm(request.POST)
@@ -18,7 +17,7 @@ def signup_view(request):
                 form.save()
                 username = form.cleaned_data.get('username')
                 messages.success(request, f"Account Successfully Created: {username}")
-                return redirect('home')
+                return redirect('login')
             
         context = {'form':form}
         

@@ -437,7 +437,7 @@ const onDelete = (id) => {
         <div style={{color: '#001845'}} className="col-md-8 m">
               {routes.map((ticket, index) => {
                 return (
-                  ticket.username === "dibas" ?
+                  ticket.username === username ?
                   <div className="card mb-3" key={ticket.id}>
                     <div className="card-header">
                         <div className="row">
@@ -482,7 +482,7 @@ const onDelete = (id) => {
                                     <input value={ticket.id} name="pid" type="hidden" />
                                     <input value="http://127.0.0.1:8000/success" type="hidden" name="su" />
                                     <input value="http://127.0.0.1:8000/ticket" type="hidden" name="fu" />
-                                    <input className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
+                                    <input hidden={ticket.payment} className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
                                 </form>
                                 {/* <Button style={{marginRight: '2px'}}variant="success" className="btn" disabled={ticket.payment}>Pay Now</Button> */}
                                 <Button variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>

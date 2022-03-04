@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import ensure_csrf_cookie
 from .signupform import LoggedUserForm
 from .models import LoggedUser
+from backend.home import homeView
 
 #login view
 @ensure_csrf_cookie
@@ -27,7 +28,7 @@ def login_view(request):
                 logged = LoggedUser.objects.get(userid=1) 
                 logged.username = request.user.username
                 logged.save()              
-                return redirect('signup')
+                return redirect('home')
             else:
                 messages.info(request,"Username OR Password is incorrect!")
                 return render(request,'login.html')
