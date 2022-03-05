@@ -582,8 +582,8 @@ const AddRoute = ({ onAdd }) => {
                   <tr key="">
                     <th className="table-light" scope="row">{route.vehicleID}</th>
                     <td className="table-light"> {route.name}</td>
-                    <td className="table-light"> {route.destinationLocation}</td>
-                    <td className="table-light"> {route.departureLocation}</td>
+                    <td style={{textTransform: 'capitalize'}} className="table-light"> {route.destinationLocation}</td>
+                    <td style={{textTransform: 'capitalize'}} className="table-light"> {route.departureLocation}</td>
                     <td className="table-light"> {route.departureTime}</td>
                     <td className="table-light"> {route.arrivalTime}</td>
                     <td className="table-light"> {route.departureDate}</td>

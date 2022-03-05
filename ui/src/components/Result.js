@@ -413,12 +413,12 @@ let loaded = true;
                   <tr key={index}>
                     <th className="table-light" scope="row">{route.vehicleID}</th>
                     <td className="table-light"> {route.name}</td>
-                    <td className="table-light"> {route.destinationLocation}</td>
-                    <td className="table-light"> {route.departureLocation}</td>
+                    <td style={{textTransform:'capitalize'}} className="table-light"> {route.destinationLocation}</td>
+                    <td style={{textTransform:'capitalize'}} className="table-light"> {route.departureLocation}</td>
                     <td className="table-light"> {route.departureTime}</td>
                     <td className="table-light"> {route.arrivalTime}</td>
                     <td className="table-light"> {route.departureDate}</td>
-                    <td className="table-light"> {route.price}</td>
+                    <td className="table-light"> Rs {route.price}</td>
                     <td className="table-light" style={{cursor: "pointer"}}>
                       <i
                         className="fa fa-ticket text-danger d-inline mx-3"
