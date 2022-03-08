@@ -13,9 +13,9 @@ import PageNotFound from './404page';
 function App() {
 return (
 <Router>
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>
-        <Route exact path='/' exact element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/route' element={<AddRoute />} />
         <Route exact path='/result/:from/:destination' element={<Result />} />
@@ -24,7 +24,7 @@ return (
         <Route exact path='/success/:slug' element={<Success />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
-        <Route path='*' element={<PageNotFound />} />
+        {/* <Route path='*' element={<PageNotFound />} /> */}
     </Routes>
 </Router>
 );

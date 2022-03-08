@@ -423,11 +423,10 @@ const onDelete = (id) => {
             <div className="float-right">
               <Button
                 variant="outline-info"
-                className="btn btn-outline-info"
+                className="btn btn-outline-info mx-2"
                 type="submit"
                 // disabled={disable}
                 onClick={onSubmit}
-                className="mx-2"
               >
                 Search
               </Button>
