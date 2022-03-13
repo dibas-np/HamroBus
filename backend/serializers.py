@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 class LoggedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoggedUser
-        fields = ['username']
+        fields = ['username','isadmin','loggedin']
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:

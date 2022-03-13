@@ -27,6 +27,8 @@ def login_view(request):
                 login(request,user)
                 logged = LoggedUser.objects.get(userid=1) 
                 logged.username = request.user.username
+                logged.isadmin = request.user.is_superuser
+                logged.loggedin = False
                 logged.save()              
                 return redirect('home')
             else:
@@ -40,6 +42,8 @@ def login_view(request):
 def logout_view(request):
     logged = LoggedUser.objects.get(userid=1)
     logged.username = "" 
+    logged.isadmin = True
+    logged.loggedin = True
     logged.save()     
     logout(request)        
-    return redirect('login')
+    return redirect('home')
