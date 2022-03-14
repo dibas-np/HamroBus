@@ -65,7 +65,7 @@ return (
     <Navbar.Collapse className="justify-content-end">
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
-        <Nav.Link href="/route">Add Route</Nav.Link>
+        {/* <Nav.Link href="/route">Add Route</Nav.Link> */}
         <Nav.Link href="/ticket">Manage Tickets</Nav.Link>
         <Nav.Link href="#">About Us</Nav.Link>
         <Nav.Link href="#">Contact</Nav.Link>
@@ -82,6 +82,13 @@ return (
           <NavDropdown.Item href="/ticket">Your Tickets</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="/logout/">Log out</NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
+      <Nav hidden={isadmin}>
+        <NavDropdown className="d-flex" title="Admin" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/route">Manage Route</NavDropdown.Item>
+          {/* <NavDropdown.Divider />
+          <NavDropdown.Item href="/logout/">Log out</NavDropdown.Item> */}
         </NavDropdown>
       </Nav>
     </Navbar.Collapse>

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, ListGroup } from 'react-bootstrap';
 import { red } from '@mui/material/colors';
 import { Navigate, useNavigate } from 'react-router-dom';
 import addWeeks from "date-fns/addWeeks";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from '@mui/lab/DatePicker';
+
 
 const LocationOptions=[
   'Achham',
@@ -181,6 +182,7 @@ export default function SearchBox() {
       < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
         <h1>Where will you go next?</h1>
       </div>  
+      {/* <ListGroup horizontal className='mx-auto'> */}
       < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
         <Autocomplete
           value={departure}
@@ -256,6 +258,7 @@ export default function SearchBox() {
         Search Bus
       </Button>
     </div>
+    {/* </ListGroup> */}
   </div>
     
   );
