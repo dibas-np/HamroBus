@@ -30,6 +30,9 @@ const NavigationBar = () => {
     // navigate('/signup/');
     <Link to="/signup/"></Link>
   }
+  const LogOutEvent = () =>{
+    localStorage.removeItem("username");
+  }
   const getUsername = () => {
     API.get("loggeduser/1/").then(res => {
       setUsername(res.data.username);
@@ -81,7 +84,7 @@ return (
         <NavDropdown className="d-flex" title= {"Hello, "+ username} id="basic-nav-dropdown">
           <NavDropdown.Item href="/ticket">Your Tickets</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="/logout/">Log out</NavDropdown.Item>
+          <NavDropdown.Item onClick={LogOutEvent()} href="/logout/">Log out</NavDropdown.Item>
         </NavDropdown>
       </Nav>
       <Nav hidden={isadmin}>

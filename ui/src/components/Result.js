@@ -384,7 +384,6 @@ let loaded = true;
                 type="submit"
                 // disabled={disable}
                 onClick={onSubmit}
-                className="mx-2"
               >
                 Search
               </Button>

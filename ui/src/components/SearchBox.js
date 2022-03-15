@@ -100,10 +100,10 @@ export default function SearchBox() {
       if (inputdestination != null && inputdeparture != null) {
         let finaldeparture = inputdeparture.toLowerCase();
         let finaldestination = inputdestination.toLowerCase();
-
-        let year = date.getFullYear()
-        let month = date.getMonth()
-        let day = date.getDate()
+        var start = new Date(date);
+        let year = start.getFullYear()
+        let month = start.getMonth()
+        let day = start.getDate()
 
         function checkMonth() {
           if (month === 1) {
@@ -172,7 +172,7 @@ export default function SearchBox() {
        let finaldate = year + '-' + month + '-' + day;
        console.log(finaldate);
 
-        // navigate('/result/' + finaldeparture + '/' + finaldestination);
+        navigate('/result/' + finaldeparture + '/' + finaldestination);
       };
   };
   return (

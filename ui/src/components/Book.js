@@ -27,9 +27,10 @@ const Book = () => {
   const [disable, setDisable] = useState(false);
   const [selected, setSelected] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState({});
-
+ 
   // const [username, setUsername] = useState("");
   let username="test";
+  const realusername = localStorage.getItem("username");
   const [bookedSeat1, setBookedSeat1] = useState("");
   const [bookedSeat2, setBookedSeat2] = useState("");
 
@@ -133,7 +134,6 @@ const Book = () => {
   const [selectedSeat28, setSelectedSeat28] = useState(false);
   const [selectedSeat29, setSelectedSeat29] = useState(false);
   const [selectedSeat30, setSelectedSeat30] = useState(false);
-  let actualusername = "";
   let actualbookedseat1 = "";
   let actualbookedseat2 = "";
   
@@ -570,6 +570,7 @@ const Book = () => {
     API.get("loggeduser/1/").then(res => {
 
       // setUsername(res.data.username);
+      localStorage.setItem("username", res.data.username);
       username=res.data.username;
       console.log("Username"+username);
       actualusername=res.data.username+"";
@@ -807,7 +808,7 @@ const Book = () => {
       }
       const routeId = routeID;
       let item = {
-       actualusername, 
+       realusername:localStorage.getItem("username"), 
        routeId,
        bookedSeat1:actualbookedseat1,
        bookedSeat2:actualbookedseat2,
