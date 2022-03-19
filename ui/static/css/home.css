@@ -1,8 +1,7 @@
 #root {
-    background-color: #03045e;
+    background-color: #ffffff;
     font-family: "Poppins";
-    padding-bottom: 20px;
-    color: #caf0f8;
+    /* color: #caf0f8; */
 }
 
 #routetable {
@@ -39,4 +38,10 @@
     padding: 50px;
     width: 100%;
     height: 100%;
+} */
+/* .footer{
+    position: fixed;
+
+    bottom: 0;
+    width: 100%;
 } */

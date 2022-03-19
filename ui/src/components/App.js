@@ -9,11 +9,13 @@ import Book from './Book';
 import Tickets from './Tickets';
 import Success  from './success';
 import PageNotFound from './404page';
+import Footer from './footer';
+import LogosBox from './partners';
 
 function App() {
 return (
 <Router>
-    {/* <Navbar /> */}
+    <Navbar />
     <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
@@ -26,6 +28,8 @@ return (
         <Route path='/sign-up' element={<SignUp />} /> */}
         {/* <Route path='*' element={<PageNotFound />} /> */}
     </Routes>
+     <LogosBox />
+    <Footer />
 </Router>
 );
 }

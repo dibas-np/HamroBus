@@ -49,7 +49,7 @@ let loaded = true;
   };
 
   return (
-    <div className = "container mt-5 resultContainer mw-100 mh-100">
+    <div style={{minHeight:'500px'}}className = "container mt-5 resultContainer mw-100 mh-100">
       <Helmet>
         <title> {TITLE} </title> 
       </Helmet>
@@ -379,8 +379,8 @@ let loaded = true;
 
             <div className="float-right">
               <Button
-                variant="outline-info"
-                className="btn btn-outline-info"
+                variant="btn-danger"
+                className="btn btn-danger"
                 type="submit"
                 // disabled={disable}
                 onClick={onSubmit}
@@ -417,7 +417,7 @@ let loaded = true;
                     <td className="table-light"> {route.departureTime}</td>
                     <td className="table-light"> {route.arrivalTime}</td>
                     <td className="table-light"> {route.departureDate}</td>
-                    <td className="table-light"> Rs {route.price}</td>
+                    <td style={{color:'#FF4062'}}className="table-light"> Rs {route.price}</td>
                     <td className="table-light" style={{cursor: "pointer"}}>
                       <i
                         className="fa fa-ticket text-danger d-inline mx-3"

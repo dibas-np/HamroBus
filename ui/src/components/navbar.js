@@ -53,7 +53,14 @@ const NavigationBar = () => {
 
   }
 return (
-< Navbar bg="#ffffff" expand = "lg" variant="dark">
+< Navbar style = {
+  {
+    backgroundColor: '#00A3FF',
+  }
+}
+bg = "#00A3FF"
+expand = "lg"
+variant = "dark" >
   <Container>
     <Navbar.Brand href="/home">
         <img
@@ -69,7 +76,7 @@ return (
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         {/* <Nav.Link href="/route">Add Route</Nav.Link> */}
-        <Nav.Link href="/ticket">Manage Tickets</Nav.Link>
+        {/* <Nav.Link href="/ticket">Manage Tickets</Nav.Link> */}
         <Nav.Link href="#">About Us</Nav.Link>
         <Nav.Link href="#">Contact</Nav.Link>
 
@@ -81,7 +88,7 @@ return (
         {/* <Button style={{margin: '4px', borderColor: "#ffffff",backgroundColor:"#ffffff",color:"#00A3FF"}} className="d-flex" variant="info" onClick={navigateToSignup}>Sign Up</Button>{' '} */}
         </Nav>
         <Nav hidden={loggedin}>
-        <NavDropdown className="d-flex" title= {"Hello, "+ username} id="basic-nav-dropdown">
+        <NavDropdown className="d-flex" title= {username.toUpperCase()} id="basic-nav-dropdown">
           <NavDropdown.Item href="/ticket">Your Tickets</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={LogOutEvent()} href="/logout/">Log out</NavDropdown.Item>

@@ -4,6 +4,8 @@ import {
 } from 'react-helmet';
 import SearchBox from "./SearchBox";
 import Navbar from "./Navbar";
+import LogosBox from "./partners";
+import Footer from "./footer";
 const TITLE = 'Home';
 const Home = () => (
 <div>
@@ -16,10 +18,10 @@ const Home = () => (
             backgroundImage: '../../images/Cover.png'
         }
     } >
-        <Navbar />
+       
         <SearchBox />
     </div>
-
+    
 </div>
 );
 
