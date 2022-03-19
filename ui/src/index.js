@@ -6,7 +6,6 @@ import Login from './components/Login';
 import API from './components/API';
 import CSRFToken from './components/csrftoken';
 
-
 ReactDOM.render( 
     <React.StrictMode >
         <App / >

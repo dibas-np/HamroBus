@@ -59,6 +59,11 @@ class LoggedUser(models.Model):
     def __str__(self):
         return self.username
 
+class NewsLetter(models.Model):
+    email = models.EmailField()
+    def __str__(self):
+        return self.email
+
 class Ticket(models.Model):
     username = models.CharField(max_length=50,default="dibas")
     routeId = models.IntegerField()

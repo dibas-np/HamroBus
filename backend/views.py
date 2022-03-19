@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Route, LoggedUser, Ticket
-from .serializers import RouteSerializer, UserSerializer, LoggedUserSerializer, TicketSerializer
+from .models import Route, LoggedUser, Ticket, NewsLetter
+from .serializers import RouteSerializer, UserSerializer, LoggedUserSerializer, TicketSerializer, NewsLetterSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 
@@ -20,3 +20,7 @@ class LoggedUserViewSet(viewsets.ModelViewSet):
 class TicketViewSet(viewsets.ModelViewSet):
     serializer_class = TicketSerializer
     queryset = Ticket.objects.all()
+
+class NewsLetterViewSet(viewsets.ModelViewSet):
+    serializer_class = NewsLetterSerializer
+    queryset = NewsLetter.objects.all()

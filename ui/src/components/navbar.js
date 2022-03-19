@@ -77,8 +77,8 @@ variant = "dark" >
         <Nav.Link href="/home">Home</Nav.Link>
         {/* <Nav.Link href="/route">Add Route</Nav.Link> */}
         {/* <Nav.Link href="/ticket">Manage Tickets</Nav.Link> */}
-        <Nav.Link href="#">About Us</Nav.Link>
-        <Nav.Link href="#">Contact</Nav.Link>
+        <Nav.Link href="/aboutus">About Us</Nav.Link>
+        <Nav.Link href="/contact">Contact</Nav.Link>
 
         </Nav>
         <Nav hidden={!loggedin}>

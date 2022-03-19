@@ -11,6 +11,8 @@ import Success  from './success';
 import PageNotFound from './404page';
 import Footer from './footer';
 import LogosBox from './partners';
+import AboutUs from './aboutus';
+import Contact from './contact';
 
 function App() {
 return (
@@ -24,6 +26,8 @@ return (
         <Route exact path='/book/:id' element={<Book />} />
         <Route path='/ticket' element={<Tickets />} />
         <Route exact path='/success/:slug' element={<Success />} />
+        <Route path='/aboutus' element={<AboutUs />} />
+        <Route path='/contact' element={<Contact />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
         {/* <Route path='*' element={<PageNotFound />} /> */}
