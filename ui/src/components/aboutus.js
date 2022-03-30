@@ -1,8 +1,21 @@
-import * as React from 'react';
+import React , { useEffect, useState } from "react";
 import '../../static/css/aboutus.css';
+import API from './API';
 
 export default function AboutUs() {
    
+    const [about, setAbout] = React.useState('Loading...');
+
+     useEffect(() => {
+         getAboutUs();
+     }, []);
+
+    const getAboutUs = () => {
+         API.get("systeminfo/1/").then(res => {
+            setAbout(res.data.about);
+         });
+
+    }
   return (
       <main className="about-us">
         <div className="container">
@@ -10,19 +23,7 @@ export default function AboutUs() {
                 <h1>About Us</h1>
             </div>
             <div className="about-us-para">
-                < p > In the 21 st century, everyone has a mobile phone in their hand and the internet.Everything people
-                need is available on the internet.To utilize the growth of the technology we need to adapt to the
-                current technology.Currently, in the context of Nepal people still use the traditional method
-                for ticket booking.They go to the counter, pay cash, and then buy the ticket.There is always a crowd
-                around the counter and a big queue.It’ s not because they do not know how to use technology.It’ s
-                    because people do not trust the online ticket booking system.People are always afraid they will be
-                    scammed.We need to change people’ s perspectives.In the current scenario, there are not many
-                dedicated companies that work on the online bus ticket booking system.Many online payment
-                companies like eSewa, Khalti, etc.have integrated bus ticket booking in their system but it is
-                always neglected.If anyone wants to book a ticket, they need to have a verified account in their
-                system and load money then they can buy the ticket.This is not convenient
-                for everyone.
-                </p>
+                <p> {about} </p>
             </div>
         </div>
     </main>

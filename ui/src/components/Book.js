@@ -846,7 +846,9 @@ const Book = () => {
         });
     };
   return (
-    <div className = "container">
+    <div style={{
+      minHeight: '500px'
+    }}className = "container">
       <Helmet>
         <title> {TITLE} </title> 
       </Helmet>
@@ -921,7 +923,7 @@ const Book = () => {
     <ButtonGroup  aria-label="First group">
       <Button variant="dark" disabled>Selected Seats: {selectedSeats}</Button>{' '}
       <Button variant="dark" disabled>Amount: Rs {amount}</Button>{' '}
-      <Button variant="outline-warning" onClick={onSubmit} disabled={selectedSeats.length==0}>Book Ticket</Button>
+      <Button variant="outline-danger" onClick={onSubmit} disabled={selectedSeats.length==0}>Book Ticket</Button>
     </ButtonGroup>
   </ButtonToolbar>
   </div>

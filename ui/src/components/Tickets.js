@@ -470,7 +470,7 @@ const onDelete = (id) => {
                                 <h5>Arrival Time: {ticket.arrivalTime}</h5>
                             </div>
                             <div className="col-md-6">
-                                < form action = "https://uat.esewa.com.np/epay/main"
+                                < form hidden={ticket.payment} className="btn btn-success" action = "https://uat.esewa.com.np/epay/main"
                                 method = "POST" >
                                     <input value={ticket.amount} name="tAmt" type="hidden" />
                                     <input value={ticket.amount} name="amt" type="hidden" />
@@ -484,8 +484,9 @@ const onDelete = (id) => {
                                     <input hidden={ticket.payment} className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
                                 </form>
                                 {/* <Button style={{marginRight: '2px'}}variant="success" className="btn" disabled={ticket.payment}>Pay Now</Button> */}
-                                <Button variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>
+                                {/* <Button variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button> */}
                             </div>
+                             <Button style={{marginTop: '5px'}}variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>
                         </div>
                     </div>    
                 </div>

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backend.models import Route, LoggedUser, Ticket, NewsLetter
+from backend.models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact
 from django.contrib.auth.models import User
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,4 +25,14 @@ class TicketSerializer(serializers.ModelSerializer):
 class NewsLetterSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsLetter
+        fields = '__all__'
+
+class SystemInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SystemInfo
+        fields = '__all__'
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
         fields = '__all__'

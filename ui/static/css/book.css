@@ -2,6 +2,9 @@
     margin: 0 auto;
     text-align: center;
 }
+.container{
+    background-color: #03045e;
+}
 
 .Seat {
     width: 60px !important;

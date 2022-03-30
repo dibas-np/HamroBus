@@ -1,9 +1,21 @@
-import * as React from 'react';
+import React , { useEffect, useState } from "react";
 import '../../static/css/logos.css';
 import API from './API';
 
 export default function Footer() {
     const [email, setEmail] = React.useState('');
+    const [weblink, setWebLink] = React.useState('');
+
+    useEffect(() => {
+      getWebLink();
+    }, []);
+
+    const getWebLink = () => {
+      API.get("systeminfo/1/").then(res => {
+        setWebLink(res.data.weblink);
+      });
+
+    }
     
     function clearSelect() {
        setEmail('');
@@ -41,7 +53,7 @@ export default function Footer() {
         
  
   return (
-<div className="my-5 position-sticky">
+<div className="mt-5 position-sticky">
 
   <footer className="bg-light text-center">
 
@@ -60,7 +72,7 @@ export default function Footer() {
 
           <div className="col-md-5 col-12">
            
-            <div className="form-outline mb-4">
+            <div className="form-outline mb-1">
               <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="newsletterEmail" className="form-control" />
               <label className="form-label">Email address</label>
             </div>
@@ -83,14 +95,16 @@ export default function Footer() {
   < div className = "text-center p-3"
   style = {
       {
-          backgroundColor: '#F2F2F2'
+          backgroundColor: '#F2F2F2',
+          marginTop: '1.5rem',
+          marginBottom: '0px'
       }
   } >
     © 2022 Copyright:
     <a style={{
         textDecoration: 'none',
         color: '#39ADFF'
-    }} href="/home"> HamroBus.com</a>
+    }} href={weblink}> HamroBus.com</a>
   </div>
 
 </footer>

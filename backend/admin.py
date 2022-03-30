@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Route, LoggedUser, Ticket, NewsLetter
+from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact
 # Register your models here.
 
 class RouteAdmin(admin.ModelAdmin):
@@ -20,3 +20,11 @@ class TicketAdmin(admin.ModelAdmin):
 class NewsLetterAdmin(admin.ModelAdmin):
     list = ('email')
     admin.site.register(NewsLetter)
+
+class SystemInfoAdmin(admin.ModelAdmin):
+    list = ('about','weblink')
+    admin.site.register(SystemInfo)
+
+class ContactAdmin(admin.ModelAdmin):
+    list = ('name','email','message')
+    admin.site.register(Contact)
