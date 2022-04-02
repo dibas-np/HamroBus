@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'backend.timezone.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'hamrobus.urls'

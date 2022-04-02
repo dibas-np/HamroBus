@@ -8,6 +8,7 @@ from django.contrib.admin.models import LogEntry, DELETION
 from django.utils.html import escape
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.utils import timezone
 
 logging.disable(logging.NOTSET)
 admin.site.unregister(Group)
@@ -15,34 +16,68 @@ admin.site.index_template = '../../ui/templates/admin/base_site.html'
 class RouteAdmin(admin.ModelAdmin):
     list_display = ('name', 'departureLocation', 'destinationLocation', 'price', 'departureDate', 'departureTime','arrivalTime' ,'vehicleID')
     search_fields = ('name', 'departureLocation', 'destinationLocation')
+    fieldsets = (
+        ('Bus Information', {
+            'fields': ('name','vehicleID')}
+        ),
+        ('Route Information', {
+            'fields': ('departureLocation', 'destinationLocation', 'price')}
+        ),
+        ('Departure Information', {
+            'fields': ('departureDate', 'departureTime', 'arrivalTime')}
+        ),
+
+    )
 admin.site.register(Route,RouteAdmin)
 
 class LoggedAdmin(admin.ModelAdmin):
     list = ('username')
     admin.site.register(LoggedUser)
 
+
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destinationLocation','departureLocation','arrivalTime','departureTime','departureDate','vehicleID')
-    ordering = ('amount','departureDate','arrivalTime')
+    list_display = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destinationLocation','departureLocation','arrivalTime','departureTime','departureDate','vehicleID','booked_date')
+    ordering = ('amount','departureDate','arrivalTime','booked_date')
     search_fields = ('username','vehicleID','departureLocation','destinationLocation')
+    fieldsets = (
+        ('User Information', {
+            'fields': ('username',)}
+        ),
+        ('Route Information', {
+            'fields': (('routeId','vehicleID'),)}
+        ),
+        ('Booked Seats', {
+            'fields': ('bookedSeat1','bookedSeat2')}
+        ),
+        ('Payment', {
+            'fields': (('amount','payment'),)}
+        ),
+        ('Departure & Arrival Information', {
+            'fields': ('departureLocation','destinationLocation','departureTime','arrivalTime','departureDate')}
+        ),
+    )
 admin.site.register(Ticket,TicketAdmin)
 
 class NewsLetterAdmin(admin.ModelAdmin):
-    list = ('email')
+    list_display = ('email','subscribed_date')
 admin.site.register(NewsLetter,NewsLetterAdmin)
 
 class SystemInfoAdmin(admin.ModelAdmin):
-    list = ('about','weblink')
-    admin.site.register(SystemInfo)
+    list_display = ('about','weblink')
+admin.site.register(SystemInfo,SystemInfoAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('name','email','message','status')
+    list_display = ('name','email','message','contacted_date','last_updated','status')
     list_filter = ('name',)
+    
     actions= ['make_replied','make_read','make_unread']
+    
+    def has_add_permission(self, request, obj=None):
+        return False
 
     @admin.action(description='Mark selected as Replied')
     def make_replied(self, request, queryset):
-        updated = queryset.update(status='replied')
+        updated = queryset.update(status='replied',last_updated=timezone.now())
         self.message_user(request, ngettext(
             '%d message was successfully marked as replied.',
             '%d messages were successfully marked as replied.',
@@ -51,7 +86,7 @@ class ContactAdmin(admin.ModelAdmin):
 
     @admin.action(description='Mark selected as Read')
     def make_read(self, request, queryset):
-        updated = queryset.update(status='read')
+        updated = queryset.update(status='read',last_updated=timezone.now())
         self.message_user(request, ngettext(
             '%d message was successfully marked as read.',
             '%d messages were successfully marked as read.',
@@ -60,7 +95,7 @@ class ContactAdmin(admin.ModelAdmin):
     
     @admin.action(description='Mark selected as Unread')
     def make_unread(self, request, queryset):
-        updated = queryset.update(status='unread')
+        updated = queryset.update(status='unread',last_updated=timezone.now())
         self.message_user(request, ngettext(
             '%d message was successfully marked as unread.',
             '%d messages were successfully marked as unread.',

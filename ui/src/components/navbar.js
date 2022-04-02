@@ -95,11 +95,7 @@ variant = "dark" >
         </NavDropdown>
       </Nav>
       <Nav hidden={isadmin}>
-        <NavDropdown className="d-flex" title="Admin" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/route">Manage Route</NavDropdown.Item>
-          {/* <NavDropdown.Divider />
-          <NavDropdown.Item href="/logout/">Log out</NavDropdown.Item> */}
-        </NavDropdown>
+        <Button href="/admin/backend/route/" variant="outline-warning">Dashboard</Button>
       </Nav>
     </Navbar.Collapse>
   </Container>

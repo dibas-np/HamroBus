@@ -19,7 +19,7 @@
 .inline-group h2 {
     background: #aabbdd;
     color: #000;
-    height: 40px;
+    height: 20px;
 }
 
 a.section:link {
@@ -71,4 +71,8 @@ input[type=submit].default:hover,
 .submit-row input.default:hover {
     background: #10287e;
     color: #fff;
+}
+
+.model-loggeduser{
+    display: none;
 }

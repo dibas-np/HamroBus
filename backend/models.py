@@ -61,6 +61,7 @@ class LoggedUser(models.Model):
 
 class NewsLetter(models.Model):
     email = models.EmailField()
+    subscribed_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.email
 
@@ -77,6 +78,7 @@ class Ticket(models.Model):
     arrivalTime = models.TimeField(default='00:00:00')
     departureDate = models.DateField()
     vehicleID = models.CharField(max_length=50)
+    booked_date = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self):
@@ -94,6 +96,8 @@ class Contact(models.Model):
     email = models.EmailField()
     message = models.TextField()
     status = models.CharField(max_length=10,default="unread")
+    contacted_date = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
