@@ -31,6 +31,8 @@ let loaded = true;
       e.preventDefault();
           navigate('/result/' + departureLocation + '/' + destinationLocation);
   };
+  const [error, setError] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
      refreshRoutes();
@@ -38,11 +40,21 @@ let loaded = true;
     // console.log(props.destination);
     // document.title="Add Route";
   }, []);
-  
+  var i =0;
   const refreshRoutes = () => {
         API.get("routes/")
         .then((res) => {
             setRoutes(res.data);
+            for(i=0;i<res.data.length;i++){
+                if(res.data[i].departureLocation === departureLocation && res.data[i].destinationLocation === destinationLocation){
+                    setError(false);
+                    console.log(error);
+                }
+            }
+            if(res.data.departureLocation == departureLocation && res.data.destinationLocation == destinationLocation){
+                setError(false);
+                setIsLoaded(true);
+            }
         })
         .catch(console.error);
       
@@ -391,7 +403,10 @@ let loaded = true;
           </Form>
         </div>
         <div className="col-md-8 m">
-          <table className="table table-dark table-striped table-borderless table-hover">
+          <div hidden={error} class="alert alert-warning" role="alert">
+            No results found! Sorry, we couldn't find any buses that match your search.
+          </div>
+          <table hidden={isLoaded} className="table table-dark table-striped table-borderless table-hover">
             <thead className="thead-dark">
               <tr>
                 <th className="table-light" scope="col">ID</th>

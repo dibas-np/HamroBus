@@ -22,6 +22,11 @@ from backend.signup import signup_view
 from backend.home import homeView
 from django.contrib.auth.decorators import login_required
 
+admin.site.site_header = "HamroBus Admin"
+admin.site.site_title = "HamroBus Admin Portal"
+admin.site.index_title = "Welcome to HamroBus Portal"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', login_required((homeView),login_url='login')),
