@@ -89,7 +89,7 @@ variant = "dark" >
         </Nav>
         <Nav hidden={loggedin}>
         <NavDropdown className="d-flex" title= {username.toUpperCase()} id="basic-nav-dropdown">
-          <NavDropdown.Item href="/ticket">Your Tickets</NavDropdown.Item>
+          <NavDropdown.Item href="/ticket">Profile</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={LogOutEvent()} href="/logout/">Log out</NavDropdown.Item>
         </NavDropdown>

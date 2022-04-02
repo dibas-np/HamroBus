@@ -92,7 +92,7 @@ const onDelete = (id) => {
     // API.delete(`routes/${id}/`).then((res) => refreshRoutes());
 };
   return (
-    <div className = "container mt-5 resultContainer mw-100 mh-100">
+    <div style={{minHeight:'500px'}} className = "container mt-5 resultContainer mw-100 mh-100">
       <Helmet>
         <title> {TITLE} </title> 
       </Helmet>

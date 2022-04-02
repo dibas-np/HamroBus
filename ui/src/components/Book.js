@@ -9,6 +9,7 @@ import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router-dom";
 import { capitalize } from "@mui/material";
 import CSRFToken from "./csrftoken";
+import { GiSteeringWheel, GiEntryDoor } from 'react-icons/gi'
 
 const TITLE = 'Book Ticket';
 const Book = () => {
@@ -881,6 +882,7 @@ const Book = () => {
   </ButtonToolbar>
     <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
     <ButtonGroup className="me-2" aria-label="First group">
+      <Button style={{transform: 'rotate(180deg)'}} variant="secondary" disabled>< GiSteeringWheel /></Button>{' '}
       <Button value="seat1" variant="secondary" onClick={selectSeat1} style={selectStyle1} disabled={seat1}>01</Button>{' '}
       <Button value="seat2" onClick={selectSeat2} style={selectStyle2} disabled={seat2} variant="secondary">02</Button>{' '}
       <Button value="seat3" onClick={selectSeat3} style={selectStyle3} disabled={seat3} variant="secondary">03</Button>{' '}
@@ -907,6 +909,7 @@ const Book = () => {
       <Button value="seat17" onClick={selectSeat17} style={selectStyle17} disabled={seat17} variant="secondary">17</Button>{' '}
       <Button value="seat18" onClick={selectSeat18} style={selectStyle18} disabled={seat18} variant="secondary">18</Button>{' '}
       <Button value="seat19" onClick={selectSeat19} style={selectStyle19} disabled={seat19} variant="secondary">19</Button>{' '}
+      <Button disabled variant="secondary" >< GiEntryDoor /></Button>{' '}
       <Button value="seat20" onClick={selectSeat20} style={selectStyle20} disabled={seat20} variant="secondary">20</Button>{' '}
       <Button value="seat21" onClick={selectSeat21} style={selectStyle21} disabled={seat21} variant="secondary">21</Button>{' '}
       <Button value="seat22" onClick={selectSeat22} style={selectStyle22} disabled={seat22} variant="secondary">22</Button>{' '}
