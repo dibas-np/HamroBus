@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 
 logging.disable(logging.NOTSET)
 admin.site.unregister(Group)
+admin.site.index_template = '../../ui/templates/admin/base_site.html'
 class RouteAdmin(admin.ModelAdmin):
     list_display = ('name', 'departureLocation', 'destinationLocation', 'price', 'departureDate', 'departureTime','arrivalTime' ,'vehicleID')
     search_fields = ('name', 'departureLocation', 'destinationLocation')

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'ui',
-    'backend',
-    'corsheaders'
+    'corsheaders',
+    'backend'
 ]
 
 MIDDLEWARE = [
@@ -60,6 +60,7 @@ import os
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'templates'),
+    os.path.join(SETTINGS_PATH, 'ui/templates'),
 )
 TEMPLATES = [
     {

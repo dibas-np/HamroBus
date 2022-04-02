@@ -548,7 +548,7 @@ const AddRoute = ({ onAdd }) => {
                 Add
               </Button>
               <Button
-                variant="outline-warning"
+                variant="warning"
                 class="btn-warning"
                 type="button"
                 onClick={() => onUpdate(routeID)}
