@@ -20,16 +20,17 @@ const Book = () => {
   const [vehicleID, setVehicleID] = useState("");
   const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
-  const { id } = useParams();
+  const { username, id } = useParams();
   const [departureLocation, setDepartureLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
   const [routeID, setRouteID] = useState(id);
+  const [user, setUser] = useState(username);
   const [disable, setDisable] = useState(false);
   const [selected, setSelected] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState({});
  
   // const [username, setUsername] = useState("");
-  let username="test";
+
   const realusername = localStorage.getItem("username");
   const [bookedSeat1, setBookedSeat1] = useState("");
   const [bookedSeat2, setBookedSeat2] = useState("");
@@ -808,7 +809,7 @@ const Book = () => {
       }
       const routeId = routeID;
       let item = {
-       realusername:localStorage.getItem("username"), 
+       username: user, 
        routeId,
        bookedSeat1:actualbookedseat1,
        bookedSeat2:actualbookedseat2,

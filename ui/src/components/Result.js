@@ -22,12 +22,14 @@ const Result = () => {
   const { from, destination } = useParams();
   const [departureLocation, setDepartureLocation] = useState(from);
   const [destinationLocation, setDestinationLocation] = useState(destination);
+  const [username, setUsername] = useState("");
   const firstUpdate = useRef(true);
 //   const [routeID, setRouteID] = useState(null);
   const [disable, setDisable] = useState(false);
 //   const [filteredResults, setFilteredResults] = useState([]);
 let loaded = true;
   const onSubmit = (e) => {
+    getUsername();
       e.preventDefault();
           navigate('/result/' + departureLocation + '/' + destinationLocation);
   };
@@ -40,11 +42,17 @@ let loaded = true;
     // console.log(props.destination);
     // document.title="Add Route";
   }, []);
+  const getUsername = () => {
+      API.get("loggeduser/1/").then(res => {
+        setUsername(res.data.username);
+      })
+    }
   var i =0;
   const refreshRoutes = () => {
         API.get("routes/")
         .then((res) => {
             setRoutes(res.data);
+            getUsername();
             for(i=0;i<res.data.length;i++){
                 if(res.data[i].departureLocation === departureLocation && res.data[i].destinationLocation === destinationLocation){
                     setError(false);
@@ -437,7 +445,7 @@ let loaded = true;
                       <i
                         className="fa fa-ticket text-danger d-inline mx-3"
                         aria-hidden="true"
-                        onClick={() => navigate(`/book/${route.id}`)}
+                        onClick={() => navigate('/book/'+username+'/'+route.id)}
                       ></i>
                     </td>
                   </tr>
