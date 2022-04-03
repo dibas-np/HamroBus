@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 from backend import views
 from django.urls import path, re_path
 from backend.home import homeView
+from backend.signup import activate
 from django.contrib.auth.decorators import login_required
 
 router = DefaultRouter()

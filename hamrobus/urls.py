@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from backend.login import login_view, logout_view
 from backend.routeview import routeView
-from backend.signup import signup_view  
+from backend.signup import signup_view , activate
+from backend import views
 from backend.home import homeView
 from django.contrib.auth.decorators import login_required
 
@@ -37,4 +38,5 @@ urlpatterns = [
     path('signup/', signup_view, name="signup"),
     path('backend/', include('backend.urls')),
     path('',include('ui.urls')),
+    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate, name='activate'),
 ]
