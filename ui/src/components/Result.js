@@ -33,7 +33,7 @@ let loaded = true;
       e.preventDefault();
           navigate('/result/' + departureLocation + '/' + destinationLocation);
   };
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ let loaded = true;
             getUsername();
             for(i=0;i<res.data.length;i++){
                 if(res.data[i].departureLocation === departureLocation && res.data[i].destinationLocation === destinationLocation){
-                    setError(false);
+                    setError(true);
                     console.log(error);
                 }
             }
@@ -411,9 +411,6 @@ let loaded = true;
           </Form>
         </div>
         <div className="col-md-8 m">
-          <div hidden={error} class="alert alert-warning" role="alert">
-            No results found! Sorry, we couldn't find any buses that match your search.
-          </div>
           <table hidden={isLoaded} className="table table-dark table-striped table-borderless table-hover">
             <thead className="thead-dark">
               <tr>
@@ -454,6 +451,9 @@ let loaded = true;
               })}
             </tbody>
           </table>
+           <div hidden={error} class="alert alert-warning" role="alert">
+            No results found! Sorry, we couldn't find any buses that match your search.
+          </div>
         </div>
       </div>
     </div>
