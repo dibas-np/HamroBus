@@ -13,6 +13,7 @@ import Footer from './footer';
 import LogosBox from './partners';
 import AboutUs from './aboutus';
 import Contact from './contact';
+import EmailVerify from './emailverify';
 
 function App() {
 return (
@@ -28,6 +29,7 @@ return (
         <Route exact path='/success/:slug' element={<Success />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/activate/:id/:uid/:token' element={<EmailVerify />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
         {/* <Route path='*' element={<PageNotFound />} /> */}

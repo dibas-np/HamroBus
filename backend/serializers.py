@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backend.models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact
+from backend.models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact, EmailVerify
 from django.contrib.auth.models import User
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,7 +9,7 @@ class RouteSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','email','password']
+        fields = ['id','username','email','password','is_active']
         extra_kwargs = {'password': {'write_only': True}}
    
 class LoggedUserSerializer(serializers.ModelSerializer):
@@ -35,4 +35,9 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
+        fields = '__all__'
+
+class EmailVerifySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmailVerify
         fields = '__all__'

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from turtle import home
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from backend.login import login_view, logout_view
 from backend.routeview import routeView
 from backend.signup import signup_view , activate
@@ -38,5 +38,6 @@ urlpatterns = [
     path('signup/', signup_view, name="signup"),
     path('backend/', include('backend.urls')),
     path('',include('ui.urls')),
-    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate, name='activate'),
+    # path('activate/<uidb64>/<token>/', activate, name='activate'),
+   
 ]

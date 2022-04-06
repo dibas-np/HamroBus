@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact
-from .serializers import RouteSerializer, UserSerializer, LoggedUserSerializer, TicketSerializer, NewsLetterSerializer, ContactSerializer, SystemInfoSerializer
+from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact , EmailVerify
+from .serializers import RouteSerializer, UserSerializer, LoggedUserSerializer, EmailVerifySerializer
+from .serializers import TicketSerializer, NewsLetterSerializer, ContactSerializer, SystemInfoSerializer
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 
@@ -32,3 +33,7 @@ class SystemInfoViewSet(viewsets.ModelViewSet):
 class ContactViewSet(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
+
+class EmailVerifyViewSet(viewsets.ModelViewSet):
+    serializer_class = EmailVerifySerializer
+    queryset = EmailVerify.objects.all()

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
-from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact
+from django.contrib.auth.models import Group, User
+from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact, EmailVerify
 from django.utils.translation import ngettext
 from django.contrib import messages
 import logging
@@ -34,6 +34,9 @@ class LoggedAdmin(admin.ModelAdmin):
     list = ('username')
     admin.site.register(LoggedUser)
 
+class EmailVerifyAdmin(admin.ModelAdmin):
+    list_display = ('username',)
+admin.site.register(EmailVerify,EmailVerifyAdmin)
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destinationLocation','departureLocation','arrivalTime','departureTime','departureDate','vehicleID','booked_date')
