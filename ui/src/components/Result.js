@@ -19,9 +19,11 @@ const Result = () => {
 //   const [vehicleID, setVehicleID] = useState("");
   const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
-  const { from, destination } = useParams();
+  const { from, destination, date } = useParams();
   const [departureLocation, setDepartureLocation] = useState(from);
   const [destinationLocation, setDestinationLocation] = useState(destination);
+  const [departureDate, setDepartureDate] = useState(date);
+  const [dateOfJourney, setDateOfJourney] = useState(date);
   const [username, setUsername] = useState("");
   const firstUpdate = useRef(true);
 //   const [routeID, setRouteID] = useState(null);
@@ -31,7 +33,7 @@ let loaded = true;
   const onSubmit = (e) => {
     getUsername();
       e.preventDefault();
-          navigate('/result/' + departureLocation + '/' + destinationLocation);
+          window.location.href='/result/' + departureLocation + '/' + destinationLocation+'/'+dateOfJourney;
   };
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,12 +56,12 @@ let loaded = true;
             setRoutes(res.data);
             getUsername();
             for(i=0;i<res.data.length;i++){
-                if(res.data[i].departureLocation === departureLocation && res.data[i].destinationLocation === destinationLocation){
+                if(res.data[i].departureLocation === departureLocation && res.data[i].destinationLocation === destinationLocation && res.data[i].departureDate === departureDate){
                     setError(true);
                     console.log(error);
                 }
             }
-            if(res.data.departureLocation == departureLocation && res.data.destinationLocation == destinationLocation){
+            if(res.data.departureLocation == departureLocation && res.data.destinationLocation == destinationLocation && res.data.departureDate == departureDate){
                 setError(false);
                 setIsLoaded(true);
             }
@@ -396,6 +398,16 @@ let loaded = true;
               </Form.Control>
               
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Date of Journey</Form.Label>
+              <Form.Control type="date"
+                placeholder="Enter Date of Journey"
+                value={dateOfJourney}
+                onChange={(e) => setDateOfJourney(e.target.value)}
+              />
+
+            </Form.Group>
+
 
             <div className="float-right">
               <Button
@@ -428,7 +440,7 @@ let loaded = true;
             <tbody>
               {routes.map((route, index) => {
                 return (
-                  route.departureLocation === from && route.destinationLocation === destination ?
+                  route.departureLocation === from && route.destinationLocation === destination && route.departureDate === departureDate ?
                   <tr key={index}>
                     <th className="table-light" scope="row">{route.vehicleID}</th>
                     <td className="table-light"> {route.name}</td>

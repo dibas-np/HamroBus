@@ -106,32 +106,41 @@ export default function SearchBox() {
         let day = start.getDate()
 
         function checkMonth() {
-          if (month === 1) {
+          if (month === 0) {
             month = '01'
           }
-          if (month === 2) {
+          if (month === 1) {
             month = '02'
           }
-          if (month === 3) {
+          if (month === 2) {
             month = '03'
           }
-          if (month === 4) {
+          if (month === 3) {
             month = '04'
           }
-          if (month === 5) {
+          if (month === 4) {
             month = '05'
           }
-          if (month === 6) {
+          if (month === 5) {
             month = '06'
           }
-          if (month === 7) {
+          if (month === 6) {
             month = '07'
           }
-          if (month === 8) {
+          if (month === 7) {
             month = '08'
           }
-          if (month === 9) {
+          if (month === 8) {
             month = '09'
+          }
+          if (month === 9) {
+            month = '10'
+          }
+          if (month === 10) {
+            month = '11'
+          }
+          if (month === 11) {
+            month = '12'
           }
         }
 
@@ -172,7 +181,7 @@ export default function SearchBox() {
        let finaldate = year + '-' + month + '-' + day;
        console.log(finaldate);
 
-        navigate('/result/' + finaldeparture + '/' + finaldestination);
+        navigate('/result/' + finaldeparture + '/' + finaldestination+ '/' + finaldate);
       };
   };
   return (

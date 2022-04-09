@@ -23,7 +23,7 @@ return (
         <Route exact path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/route' element={<AddRoute />} />
-        <Route exact path='/result/:from/:destination' element={<Result />} />
+        <Route exact path='/result/:from/:destination/:date' element={<Result />} />
         <Route exact path='/book/:username/:id' element={<Book />} />
         <Route path='/ticket' element={<Tickets />} />
         <Route exact path='/success/:slug' element={<Success />} />
