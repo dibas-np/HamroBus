@@ -5,7 +5,7 @@ from django.urls import path, re_path
 from backend.home import homeView
 from backend.signup import activate
 from django.contrib.auth.decorators import login_required
-from backend.views import EmailVerifyViewSet
+from backend.views import EmailVerifyViewSet, FAQViewSet
 
 router = DefaultRouter()
 router.register(r'routes', views.RouteViewSet, basename='route')
@@ -16,6 +16,7 @@ router.register(r'newsletter', views.NewsLetterViewSet, basename='newsletter')
 router.register(r'systeminfo', views.SystemInfoViewSet, basename='systeminfo')
 router.register(r'contacts', views.ContactViewSet, basename='contact')
 router.register(r'emailverify', views.EmailVerifyViewSet, basename='emailverify')
+router.register(r'faq', views.FAQViewSet, basename='faq')
 urlpatterns = router.urls
 
 urlpatterns += [

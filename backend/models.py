@@ -110,3 +110,10 @@ class EmailVerify(models.Model):
 
     def __str__(self):
         return self.username.username
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=100)
+    answer = models.TextField()
+
+    def __str__(self):
+        return self.question

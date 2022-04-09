@@ -14,6 +14,7 @@ import LogosBox from './partners';
 import AboutUs from './aboutus';
 import Contact from './contact';
 import EmailVerify from './emailverify';
+import FAQ from './faq';
 
 function App() {
 return (
@@ -30,6 +31,7 @@ return (
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/activate/:id/:uid/:token' element={<EmailVerify />} />
+        <Route path='/faq' element={<FAQ />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
         {/* <Route path='*' element={<PageNotFound />} /> */}

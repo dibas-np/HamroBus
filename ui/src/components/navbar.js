@@ -79,7 +79,7 @@ variant = "dark" >
         {/* <Nav.Link href="/ticket">Manage Tickets</Nav.Link> */}
         <Nav.Link href="/aboutus">About Us</Nav.Link>
         <Nav.Link href="/contact">Contact</Nav.Link>
-
+        <Nav.Link href="/faq">FAQ</Nav.Link>
         </Nav>
         <Nav hidden={!loggedin}>
         <Nav.Link style={{margin:'4px', borderColor: "#ffffff",color:"#ffffff"}} href="/login/" className="btn btn-outline-info">Login</Nav.Link>

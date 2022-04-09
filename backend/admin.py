@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact, EmailVerify
+from .models import Route, LoggedUser, Ticket, NewsLetter, SystemInfo, Contact, EmailVerify, FAQ
 from django.utils.translation import ngettext
 from django.contrib import messages
 import logging
@@ -156,3 +156,7 @@ class LogEntryAdmin(admin.ModelAdmin):
     object_link.short_description = "object"
 
 admin.site.register(LogEntry, LogEntryAdmin)
+
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ('question','answer')
+admin.site.register(FAQ,FAQAdmin)
