@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { ListGroup, Card, Button, Form } from "react-bootstrap";
+import { ListGroup, Card, Button, Form, Row, Col } from "react-bootstrap";
 import API from "./API";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from 'react-helmet'
@@ -19,10 +19,14 @@ const Tickets = () => {
   const [vehicleID, setVehicleID] = useState("");
   const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
+  const [firstName, setFirstName] = useState("HamroBus");
+  const [lastName, setLastName] = useState("User");
+  const [email, setEmail] = useState("");
 // let routes = [];
 //   const { from, destination } = useParams();
   const [departureLocation, setDepartureLocation] = useState("Kathmandu");
   const [destinationLocation, setDestinationLocation] = useState("Gulmi");
+  const [dateOfJourney, setDateOfJourney] = useState("2022-05-27");
   const [username, setUsername] = useState("");
 //   const [routesData, setRoutesData]= useState([]);
 //   const [ticketData, setTicketData] = useState([]);
@@ -35,7 +39,8 @@ let ticketData = [];
 let loaded = true;
   const onSubmit = (e) => {
       e.preventDefault();
-          navigate('/result/' + departureLocation + '/' + destinationLocation);
+          // navigate('/result/' + departureLocation + '/' + destinationLocation);
+          window.location.href = '/result/' + departureLocation + '/' + destinationLocation + '/' + dateOfJourney;
   };
 
   useEffect(() => {
@@ -98,9 +103,60 @@ const onDelete = (id) => {
       </Helmet>
       < div className = "row d-flex justify-content-center result-rows" >
         <div className="col-md-4">
+          {/* <div className="card">
+                <div className="card-body mt-4"> */}
+                  <Form className="">
+                     <h3 className="mb-3">Your Details</h3>
+                    <Form.Group className="mb-3">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control placeholder={username} disabled />
+                  </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control type="email" placeholder="Enter email" />
+                      <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                      </Form.Text>
+                    </Form.Group>
+                    <Row className="mb-3">
+                    <Col>
+                      <Form.Control placeholder="First name" />
+                    </Col>
+                    <Col>
+                      <Form.Control placeholder="Last name" />
+                    </Col>
+                  </Row>
+                   <div className="float-right">
+                      <Button
+                        variant="outline-info"
+                        class="btn btn-outline-info"
+                        type="submit"
+                        disabled={disable}
+                        onClick={onSubmit}
+                        className="mx-2"
+                      >
+                        Update Details
+                      </Button>
+                      <Button
+                        variant="warning"
+                        class="btn-warning"
+                        type="button"
+                        onClick={() => onUpdate(routeID)}
+                        className="mx-2"
+                      >
+                        Change Password
+                      </Button>
+                    </div>
+
+                  </Form>
+                  
+
+                {/* </div>
+              </div> */}
           {/* <h3 className="float-left">Create a new Route</h3> */}
           <Form onSubmit={onSubmit} className="mt-4">
-
+          <h3 className="mb-3">Search ticket for next travel</h3>
             <Form.Group className="mb-3" controlId="formBasicGenre">
               <Form.Label>Departure Location </Form.Label>
               <Form.Control as="select"
@@ -419,11 +475,21 @@ const onDelete = (id) => {
               </Form.Control>
               
             </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Date of Journey</Form.Label>
+              <Form.Control type="date"
+                placeholder="Enter Date of Journey"
+                value={dateOfJourney}
+                onChange={(e) => setDateOfJourney(e.target.value)}
+              />
+
+            </Form.Group>
     
             <div className="float-right">
               <Button
-                variant="outline-info"
-                className="btn btn-outline-info mx-2"
+                variant="outline-danger"
+                className="btn btn-outline-danger mx-1"
                 type="submit"
                 // disabled={disable}
                 onClick={onSubmit}
@@ -433,7 +499,13 @@ const onDelete = (id) => {
             </div>
           </Form>
         </div>
+       
         <div style={{color: '#001845'}} className="col-md-8 m">
+          <Card>
+            <Card.Header>
+              <h3>Your Tickets</h3>
+            </Card.Header>
+          </Card>
               {routes.map((ticket, index) => {
                 return (
                   ticket.username === username ?
