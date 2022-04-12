@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const TITLE = 'Your Tickets';
 const Tickets = () => {
   const [name, setName] = useState("");
-  
+  const { id } = useParams();
   const [departureTime, setDepartureTime] = useState("06:00");
   const [arrivalTime, setArrivalTime] = useState("18:00");
   const [departureDate, setDepartureDate] = useState("");
@@ -22,6 +22,7 @@ const Tickets = () => {
   const [firstName, setFirstName] = useState("HamroBus");
   const [lastName, setLastName] = useState("User");
   const [email, setEmail] = useState("");
+  const [userID, setUserId] = useState(id);
 // let routes = [];
 //   const { from, destination } = useParams();
   const [departureLocation, setDepartureLocation] = useState("Kathmandu");
@@ -52,9 +53,30 @@ let loaded = true;
         .then((res) => {
            setRoutes(res.data);
             getUsername();
+            getUserData();
         })
         .catch(console.error);
       
+  };
+  const getUserData = () => {
+    API.get("users/"+id+"/").then(res => {
+      setFirstName(res.data.first_name);
+      setLastName(res.data.last_name);
+      setEmail(res.data.email);
+    }).catch(console.error);
+
+  };
+
+  const onUpdate = () => {
+    let item = {
+      username: username,
+      email: email,
+      first_name: firstName,
+      last_name: lastName,
+    };
+    API.patch("users/"+id+"/", item).then(res => {
+      swal("Success!", "Your profile has been updated!", "success");
+    }).catch(console.error);
   };
 //    const getRoutes = (e) => {
 //        API.get("routes/")
@@ -71,9 +93,7 @@ let loaded = true;
            // setUsername(res.data.username);
            setUsername(res.data.username);
            console.log("Username" + username);
-        //    actualusername = res.data.username + "";
-        //    console.log(actualusername);
-       })
+       }).catch(console.error);
 
    }
 const onDelete = (id) => {
@@ -114,17 +134,17 @@ const onDelete = (id) => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
 
                       <Form.Label>Email address</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" />
+                      <Form.Control value={email} type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter email" />
                       <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                       </Form.Text>
                     </Form.Group>
                     <Row className="mb-3">
                     <Col>
-                      <Form.Control placeholder="First name" />
+                      <Form.Control value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder="First name" />
                     </Col>
                     <Col>
-                      <Form.Control placeholder="Last name" />
+                      <Form.Control value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder="Last name" />
                     </Col>
                   </Row>
                    <div className="float-right">
@@ -132,8 +152,7 @@ const onDelete = (id) => {
                         variant="outline-info"
                         class="btn btn-outline-info"
                         type="submit"
-                        disabled={disable}
-                        onClick={onSubmit}
+                        onClick={onUpdate}
                         className="mx-2"
                       >
                         Update Details

@@ -16,6 +16,7 @@ const NavigationBar = () => {
   const [username, setUsername] = useState("Profile");
   const [loggedin, setLoggedin] = useState(false);
   const [isadmin, setIsadmin] = useState(false);
+  const [id, setId] = useState(0);
   let login = false;
   let admin = false;
 
@@ -38,6 +39,7 @@ const NavigationBar = () => {
       setUsername(res.data.username);
       setLoggedin(res.data.loggedin);
       setIsadmin(res.data.isadmin);
+      setId(res.data.id);
       localStorage.setItem("username", res.data.username);
       localStorage.setItem("loggedin", res.data.loggedin);
       localStorage.setItem("isadmin", res.data.isadmin);
@@ -89,7 +91,7 @@ variant = "dark" >
         </Nav>
         <Nav hidden={loggedin}>
         <NavDropdown className="d-flex" title= {username.toUpperCase()} id="basic-nav-dropdown">
-          <NavDropdown.Item href="/ticket">Profile</NavDropdown.Item>
+          <NavDropdown.Item onClick={() => navigate('/'+id+'/ticket/')} >Profile</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={LogOutEvent()} href="/logout/">Log out</NavDropdown.Item>
         </NavDropdown>

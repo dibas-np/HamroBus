@@ -56,6 +56,7 @@ class LoggedUser(models.Model):
     username = models.CharField(max_length=50)
     isadmin = models.BooleanField(default=True)
     loggedin = models.BooleanField(default=True)
+    id = models.IntegerField(0)
     
     def __str__(self):
         return self.username

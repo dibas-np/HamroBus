@@ -9,13 +9,13 @@ class RouteSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','email','password','is_active']
+        fields = ['id','username','email','password','first_name','last_name','is_active']
         extra_kwargs = {'password': {'write_only': True}}
    
 class LoggedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoggedUser
-        fields = ['username','isadmin','loggedin']
+        fields = ['userid','username','isadmin','loggedin','id']
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
