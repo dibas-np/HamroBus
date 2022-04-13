@@ -9,17 +9,28 @@ const Success = () => {
   let payment = true;
   const navigate = useNavigate();
   let id = searchParams.get('oid');
+  const [uid, setUid] = React.useState(0);
   const updatePayment = () => {
       let item = { payment }
       API.patch(`tickets/${id}/`, item).then((res) => navigateTo());
+      getUsername();
       
   };
   const navigateTo = () => {
-      navigate('/ticket');
+      navigate('/'+uid+'/ticket');
   }
   useEffect(() => {
         updatePayment();
     }, []);
+    const getUsername = () => {
+      API.get("loggeduser/1/").then(res => {
+        // setUsername(res.data.username);
+        setUsername(res.data.username);
+        setUid(res.data.id);
+        console.log("Username" + username);
+      }).catch(console.error);
+
+    }
   console.log(searchParams.get('oid')); // ▶ URLSearchParams {}
     return (
   <div>Payment Success! Redirecting Now...</div>

@@ -6,6 +6,8 @@ from backend.home import homeView
 from backend.signup import activate
 from django.contrib.auth.decorators import login_required
 from backend.views import EmailVerifyViewSet, FAQViewSet
+from django.conf.urls import url
+from backend.password import change_password
 
 router = DefaultRouter()
 router.register(r'routes', views.RouteViewSet, basename='route')
@@ -25,4 +27,5 @@ urlpatterns += [
     # match all other pages
     re_path(r'^(?:.*)/?$', login_required((homeView),login_url='login')),
     re_path(r'activate/<uid>/<token>/', activate, name='activate'),
+    re_path(r'password/', change_password, name='change_password'),
 ]

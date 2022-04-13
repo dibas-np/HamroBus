@@ -21,6 +21,7 @@ from backend.routeview import routeView
 from backend.signup import signup_view , activate
 from backend import views
 from backend.home import homeView
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
 admin.site.site_header = "HamroBus Admin"
@@ -38,6 +39,14 @@ urlpatterns = [
     path('signup/', signup_view, name="signup"),
     path('backend/', include('backend.urls')),
     path('',include('ui.urls')),
+    url('^accounts/', include('django.contrib.auth.urls')),
     # path('activate/<uidb64>/<token>/', activate, name='activate'),
+#     accounts/logout/ [name='logout']
+# accounts/password_change/ [name='password_change']
+# accounts/password_change/done/ [name='password_change_done']
+# accounts/password_reset/ [name='password_reset']
+# accounts/password_reset/done/ [name='password_reset_done']
+# accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
+# accounts/reset/done/ [name='password_reset_complete']
    
 ]

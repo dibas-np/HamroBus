@@ -27,7 +27,7 @@ return (
         <Route exact path='/result/:from/:destination/:date' element={<Result />} />
         <Route exact path='/book/:username/:id' element={<Book />} />
         <Route path='/:id/ticket' element={<Tickets />} />
-        <Route exact path='/success/:slug' element={<Success />} />
+        <Route exact path='/:slug' element={<Success />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/activate/:id/:uid/:token' element={<EmailVerify />} />

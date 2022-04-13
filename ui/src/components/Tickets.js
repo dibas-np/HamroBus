@@ -96,6 +96,9 @@ let loaded = true;
        }).catch(console.error);
 
    }
+   const changePassword = ( ) => {
+     window.href="127.0.0.1:8000/password/change/";
+   }
 const onDelete = (id) => {
     swal({
             title: "Are you sure?",
@@ -161,8 +164,9 @@ const onDelete = (id) => {
                         variant="warning"
                         class="btn-warning"
                         type="button"
-                        onClick={() => onUpdate(routeID)}
+                        onClick={() => changePassword()}
                         className="mx-2"
+                        href="/password/change/"
                       >
                         Change Password
                       </Button>
