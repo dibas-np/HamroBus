@@ -13,7 +13,10 @@ from ui.views import password_reset_request
 app_name = "ui"
 urlpatterns = [
     path('login/', login_view),
+    path('accounts/login/', login_view),
     path('logout/', logout_view),
+    path('accounts/logout/', logout_view),
+
     # path('accounts/',include('django.contrib.auth.urls')),
     path("password/change/", auth_views.PasswordChangeView.as_view(template_name='../templates/password/password_change_view.html'), name="change_password"),
     path("accounts/password/change/done/", auth_views.PasswordChangeDoneView.as_view(template_name='../templates/password/password_change_done.html'), name="password_change_done"),
