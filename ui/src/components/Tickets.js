@@ -578,10 +578,13 @@ const onDelete = (id) => {
                                     <input value="http://127.0.0.1:8000/ticket" type="hidden" name="fu" />
                                     <input hidden={ticket.payment} className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
                                 </form>
+                                
+                                
                                 {/* <Button style={{marginRight: '2px'}}variant="success" className="btn" disabled={ticket.payment}>Pay Now</Button> */}
                                 {/* <Button variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button> */}
                             </div>
-                             <Button style={{marginTop: '5px'}}variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>
+                            <Button hidden={!ticket.payment} className="btn btn-info" onClick={() => {window.location.href='/printticket/'+userID+'/'+`${ticket.id}`} }> Print Ticket </Button>
+                            <Button style={{marginTop: '5px'}} variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>
                         </div>
                     </div>    
                 </div>

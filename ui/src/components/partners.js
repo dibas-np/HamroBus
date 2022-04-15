@@ -4,7 +4,7 @@ import '../../static/css/logos.css';
 export default function LogosBox() {
  
   return (
-      <section className="logo-list">
+    <section className="logo-list d-print-none">
     <div className="container" classNam="d-flex justify-content-center">
         <div className="row">
             <div className="col-lg-2 col-md-4 col-6">

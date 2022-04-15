@@ -53,7 +53,7 @@ export default function Footer() {
         
  
   return (
-<div className="mt-5 position-sticky">
+<div className="mt-5 position-sticky d-print-none">
 
   <footer className="bg-light text-center">
 
