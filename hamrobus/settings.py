@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'backend',
     'crispy_forms',
+    'rangefilter',
 ]
 
 MIDDLEWARE = [

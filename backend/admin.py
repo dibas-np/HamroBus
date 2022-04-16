@@ -9,13 +9,16 @@ from django.utils.html import escape
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils import timezone
+from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 logging.disable(logging.NOTSET)
 admin.site.unregister(Group)
 admin.site.index_template = '../../ui/templates/admin/base_site.html'
 class RouteAdmin(admin.ModelAdmin):
     list_display = ('name', 'departureLocation', 'destinationLocation', 'price', 'departureDate', 'departureTime','arrivalTime' ,'vehicleID')
+    ordering= ['-departureDate','departureTime','price']
     search_fields = ('name', 'departureLocation', 'destinationLocation')
+    list_filter =(('departureDate', DateRangeFilter),)
     fieldsets = (
         ('Bus Information', {
             'fields': ('name','vehicleID')}
@@ -40,8 +43,9 @@ admin.site.register(EmailVerify,EmailVerifyAdmin)
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destinationLocation','departureLocation','arrivalTime','departureTime','departureDate','vehicleID','booked_date')
-    ordering = ('amount','departureDate','arrivalTime','booked_date')
+    ordering = ('departureDate','arrivalTime','-booked_date')
     search_fields = ('username','vehicleID','departureLocation','destinationLocation')
+    list_filter = (('departureDate',DateRangeFilter),('booked_date',DateRangeFilter),'booked_date')
     fieldsets = (
         ('User Information', {
             'fields': ('username',)}

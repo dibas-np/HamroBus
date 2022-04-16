@@ -25,6 +25,7 @@ django-environ = "*"
 environ = "*"
 six = "*"
 django-crispy-forms = "*"
+django-admin-rangefilter = "*"
 
 [dev-packages]
 
