@@ -28,7 +28,7 @@ return (
         <Route exact path='/result/:from/:destination/:date' element={<Result />} />
         <Route exact path='/book/:username/:id' element={<Book />} />
         <Route path='/:id/ticket' element={<Tickets />} />
-        <Route exact path='/:slug' element={<Success />} />
+        <Route exact path='/success' element={<Success />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/activate/:id/:uid/:token' element={<EmailVerify />} />
@@ -36,7 +36,7 @@ return (
         <Route path='/printticket/:userid/:ticketid' element={<PrintTickets />} />
         {/* <Route path='/blogs' element={<Blogs />} />
         <Route path='/sign-up' element={<SignUp />} /> */}
-        {/* <Route path='*' element={<PageNotFound />} /> */}
+        <Route path='*' element={<PageNotFound />} />
     </Routes>
      <LogosBox />
     <Footer />
