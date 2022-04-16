@@ -7,7 +7,6 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
     return ( 
         <section className="login">
@@ -33,6 +32,3 @@ export default class Login extends Component {
     )
 }
 }
-
-// const appDiv = document.getElementById("Loginform");
-// render(<Login/> , appDiv);

@@ -69,26 +69,22 @@ export default function EmailVerify() {
     }
     
   return (
-      <div style={{minHeight:'500px'}}>
-            <Helmet>
-        <title> {TITLE} </title> 
-      </Helmet>
-      
-     <Card className="d-flex justify-content center">
-        <Card.Header>Email Confimation</Card.Header>
-        <Card.Body>
-            <Card.Title>Verify your email now</Card.Title>
-            <Card.Text>
-            Click the button below to start the verification process!
-            </Card.Text>
-            <Button variant="danger" onClick={verifyEmail}>Verify</Button>
-        </Card.Body>
-    </Card>
-      
-
-      </div>
-
-  
+    <div style={{minHeight:'500px'}}>
+        <Helmet>
+            <title> {TITLE} </title> 
+        </Helmet>
+        
+        <Card className="d-flex justify-content center">
+            <Card.Header>Email Confimation</Card.Header>
+            <Card.Body>
+                <Card.Title>Verify your email now</Card.Title>
+                <Card.Text>
+                Click the button below to start the verification process!
+                </Card.Text>
+                <Button variant="danger" onClick={verifyEmail}>Verify</Button>
+            </Card.Body>
+        </Card>
+    </div>
   );
 }
 

@@ -1,13 +1,11 @@
-import React, {useRef, useState, useEffect } from "react";
-import { ButtonGroup, InputGroup, ButtonToolbar,ListGroup, Card, Button, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { ButtonGroup,  ButtonToolbar,Button } from "react-bootstrap";
 import API from "./API";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from 'react-helmet'
-import { Redirect, Routes, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import swal from 'sweetalert';
-import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router-dom";
-import { capitalize } from "@mui/material";
 import CSRFToken from "./csrftoken";
 import { GiSteeringWheel, GiEntryDoor } from 'react-icons/gi'
 
@@ -29,16 +27,10 @@ const Book = () => {
   const [disable, setDisable] = useState(false);
   const [selected, setSelected] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState({});
- 
-  // const [username, setUsername] = useState("");
-
   const realusername = localStorage.getItem("username");
   const [bookedSeat1, setBookedSeat1] = useState("");
   const [bookedSeat2, setBookedSeat2] = useState("");
-
-
   const [selectedSeats, setSelectedSeats] = useState([]);
-  // const [amount, setAmount] = useState(price * selectedSeats.length);
   let amount = price * selectedSeats.length;
   const style1={
     backgroundColor: 'green',
@@ -139,21 +131,20 @@ const Book = () => {
   let actualbookedseat1 = "";
   let actualbookedseat2 = "";
   
-   const selectSeat1 = (e) => {
-       if (selectedSeat1) {
-         setSelectedSeat1(false);
-         const newList = selectedSeats.filter((item) => item !== e.target.value);
-         setSelectedSeats(newList);
-         setSelectStyle1(clearstyle);
-         return
-       }
-      setSelectedSeat1(true);
-       const newList = selectedSeats.concat(e.target.value);
-       console.log(selectedSeats.length);
-       setSelectedSeats(newList);
-       setSelectStyle1(style1);
+  const selectSeat1 = (e) => {
+      if (selectedSeat1) {
+        setSelectedSeat1(false);
+        const newList = selectedSeats.filter((item) => item !== e.target.value);
+        setSelectedSeats(newList);
+        setSelectStyle1(clearstyle);
+        return
       }
-
+      setSelectedSeat1(true);
+      const newList = selectedSeats.concat(e.target.value);
+      console.log(selectedSeats.length);
+      setSelectedSeats(newList);
+      setSelectStyle1(style1);
+      }
       const selectSeat2 = (e) => {
         if (selectedSeat2) {
           setSelectedSeat2(false);
@@ -563,22 +554,19 @@ const Book = () => {
     }
     
   useEffect(() => {
-     refreshRoutes();
-     console.log(`${routeID}`);
-     console.log(username);
+    refreshRoutes();
+    console.log(`${routeID}`);
+    console.log(username);
   }, []);
 
   const getUsername=()=>{
     API.get("loggeduser/1/").then(res => {
-
-      // setUsername(res.data.username);
       localStorage.setItem("username", res.data.username);
       username=res.data.username;
       console.log("Username"+username);
       actualusername=res.data.username+"";
       console.log(actualusername);
     })
-
   }
   const bookedSeat=()=>{
     setBookedSeat1(selectedSeats[0]);
@@ -587,137 +575,106 @@ const Book = () => {
     console.log(selectedSeats[0]);
     console.log(selectedSeats[1]);
     setBookedSeat2(selectedSeats[1]);
+
     if(selectedSeats[0]==="seat1" || selectedSeats[1]==="seat1"){
-      // setSeat1(true);
       seat1=true;
-      
     }
     if (selectedSeats[0] === "seat2" || selectedSeats[1] === "seat2") {
-      // setSeat2(true);
       seat2=true;
     }
     if (selectedSeats[0] === "seat3" || selectedSeats[1] === "seat3") {
-      // setSeat3(true);
       seat3=true;
     }
     if (selectedSeats[0] === "seat4" || selectedSeats[1] === "seat4") {
-      // setSeat4(true);
       seat4=true;
     }
     if (selectedSeats[0] === "seat5" || selectedSeats[1] === "seat5") {
-      // setSeat5(true);
       seat5=true;
     }
     if (selectedSeats[0] === "seat6" || selectedSeats[1] === "seat6") {
-      // setSeat6(true);
       seat6=true;
     }
     if (selectedSeats[0] === "seat7" || selectedSeats[1] === "seat7") {
-      // setSeat7(true);
       seat7=true;
     }
     if (selectedSeats[0] === "seat8" || selectedSeats[1] === "seat8") {
-      // setSeat8(true);
       seat8=true;
     }
     if (selectedSeats[0] === "seat9" || selectedSeats[1] === "seat9") {
-      // setSeat9(true);
       seat9=true;
     }
     if (selectedSeats[0] === "seat10" || selectedSeats[1] === "seat10") {
-      // setSeat10(true);
       seat10=true;
     }
     if (selectedSeats[0] === "seat11" || selectedSeats[1] === "seat11") {
-      // setSeat11(true);
       seat11=true;
     }
     if (selectedSeats[0] === "seat12" || selectedSeats[1] === "seat12") {
-      // setSeat12(true);
       seat12=true;
     }
     if (selectedSeats[0] === "seat13" || selectedSeats[1] === "seat13") {
-      // setSeat13(true);
       seat13=true;
     }
     if (selectedSeats[0] === "seat14" || selectedSeats[1] === "seat14") {
-      // setSeat14(true);
       seat14=true;
     }
     if (selectedSeats[0] === "seat15" || selectedSeats[1] === "seat15") {
-      // setSeat15(true);
       seat15=true;
     }
     if (selectedSeats[0] === "seat16" || selectedSeats[1] === "seat16") {
-      // setSeat16(true);
       seat16=true;
     }
     if (selectedSeats[0] === "seat17" || selectedSeats[1] === "seat17") {
-      // setSeat17(true);
       seat17=true;
     }
     if (selectedSeats[0] === "seat18" || selectedSeats[1] === "seat18") {
-      // setSeat18(true);
       seat18=true;
     }
     if (selectedSeats[0] === "seat19" || selectedSeats[1] === "seat19") {
-      // setSeat19(true);
       seat19=true;
     }
     if (selectedSeats[0] === "seat20" || selectedSeats[1] === "seat20") {
-      // setSeat20(true);
       seat20=true;
     }
     if (selectedSeats[0] === "seat21" || selectedSeats[1] === "seat21") {
-      // setSeat21(true);
       seat21=true;
     }
     if (selectedSeats[0] === "seat22" || selectedSeats[1] === "seat22") {
-      // setSeat22(true);
       seat22=true;
     }
     if (selectedSeats[0] === "seat23" || selectedSeats[1] === "seat23") {
-      // setSeat23(true);
       seat23=true;
     }
     if (selectedSeats[0] === "seat24" || selectedSeats[1] === "seat24") {
-      // setSeat24(true);
       seat24=true;
     }
     if (selectedSeats[0] === "seat25" || selectedSeats[1] === "seat25") {
-      // setSeat25(true);
       seat25=true;
     }
     if (selectedSeats[0] === "seat26" || selectedSeats[1] === "seat26") {
-      // setSeat26(true);
       seat26=true;
     }
     if (selectedSeats[0] === "seat27" || selectedSeats[1] === "seat27") {
-      // setSeat27(true);
       seat27=true;
     }
     if (selectedSeats[0] === "seat28" || selectedSeats[1] === "seat28") {
-      // setSeat28(true);
       seat28=true;
     }
     if (selectedSeats[0] === "seat29" || selectedSeats[1] === "seat29") {
-      // setSeat29(true);
       seat29=true;
     }
     if (selectedSeats[0] === "seat30" || selectedSeats[1] === "seat30") {
-      // setSeat30(true);
       seat30=true;
     }  
   }
   const refreshRoutes = () => {
-        API.get("routes/")
-        .then((res) => {
+        API.get("routes/").then(
+          (res) => {
           setRoutes(res.data);
           routes.map((route)=>{
             if(route.id === routeID){
               console.log(route);
             }
-
           });
           for(let i=0; i<res.data.length; i++){
             if(res.data[i].id==routeID){
@@ -848,91 +805,88 @@ const Book = () => {
         });
     };
   return (
-    <div style={{
-      minHeight: '500px'
-    }}className = "container">
-      <Helmet>
-        <title> {TITLE} </title> 
-      </Helmet>
-      <CSRFToken />
-      <h1 style={{textAlign:'center'}}>Book Ticket</h1>
-      < div className = "item-group d-flex justify-content-center input-group" >
-        {routes.map((route, index) => {
-                return (
-                route.id == routeID ?
-                <div key={routeID} className="card list-group-item input-group-prepend" style={{ width: "24rem" }}>
-                <div className="card-body">
-                    <h5 style={{textTransform:"capitalize"}}className="card-title">{route.departureLocation} to {route.destinationLocation}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">Departure Time: {route.departureTime}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Arrival Time: {route.arrivalTime}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Price: {route.price}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Vehicle ID: {route.vehicleID}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Departure Date: {route.departureDate}</h6>
-                </div>
-            </div> : null
-                );
-               })}
-    <div style={{textAlign:'center', marginTop: '8px', marginLeft: '5px'}}className="input-group-prepend">
-    <ButtonToolbar className="mb-3 d-flex justify-content-center" aria-label="Toolbar with Button groups">
-    <ButtonGroup className="me-2" aria-label="First group">
-      <Button style={style1} variant="secondary">Selected</Button>{' '}
-      <Button variant="secondary" disabled>Booked</Button>{' '}
-      <Button variant="secondary">Available</Button>
-    </ButtonGroup>
-  </ButtonToolbar>
-    <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
-    <ButtonGroup className="me-2" aria-label="First group">
-      <Button style={{transform: 'rotate(180deg)'}} variant="secondary" disabled>< GiSteeringWheel /></Button>{' '}
-      <Button value="seat1" variant="secondary" onClick={selectSeat1} style={selectStyle1} disabled={seat1}>01</Button>{' '}
-      <Button value="seat2" onClick={selectSeat2} style={selectStyle2} disabled={seat2} variant="secondary">02</Button>{' '}
-      <Button value="seat3" onClick={selectSeat3} style={selectStyle3} disabled={seat3} variant="secondary">03</Button>{' '}
-      <Button value="seat4" onClick={selectSeat4} style={selectStyle4} disabled={seat4} variant="secondary">04</Button>{' '}
-      <Button value="seat5" onClick={selectSeat5} style={selectStyle5} disabled={seat5} variant="secondary">05</Button>{' '}
-      <Button value="seat6" onClick={selectSeat6} style={selectStyle6} disabled={seat6} variant="secondary">06</Button>{' '}
-      <Button value="seat7" onClick={selectSeat7} style={selectStyle7} disabled={seat7} variant="secondary">07</Button>{' '}
-      <Button value="seat8" onClick={selectSeat8} style={selectStyle8} disabled={seat8} variant="secondary">08</Button>{' '}
-      <Button value="seat9" onClick={selectSeat9} style={selectStyle9} disabled={seat9} variant="secondary">09</Button>{' '}
-      <Button value="seat10" onClick={selectSeat10} style={selectStyle10} disabled={seat10} variant="secondary">10</Button>{' '}
-      <Button value="seat11" onClick={selectSeat11} style={selectStyle11} disabled={seat11} variant="secondary">11</Button>{' '}
-      <Button value="seat12" onClick={selectSeat12} style={selectStyle12} disabled={seat12} variant="secondary">12</Button>{' '}
-      <Button value="seat13" onClick={selectSeat13} style={selectStyle13} disabled={seat13} variant="secondary">13</Button>{' '}
-      <Button value="seat14" onClick={selectSeat14} style={selectStyle14} disabled={seat14} variant="secondary">14</Button>{' '}
-      <Button value="seat15" onClick={selectSeat15} style={selectStyle15} disabled={seat15} variant="secondary">15</Button>
-    </ButtonGroup>
-  </ButtonToolbar>
-  <ButtonToolbar
-    className="justify-content-between"
-    aria-label="Toolbar with Button groups"
-  >
-    <ButtonGroup aria-label="First group">
-      <Button value="seat16" style={selectStyle16} onClick={selectSeat16} disabled={seat16} variant="secondary">16</Button>{' '}
-      <Button value="seat17" onClick={selectSeat17} style={selectStyle17} disabled={seat17} variant="secondary">17</Button>{' '}
-      <Button value="seat18" onClick={selectSeat18} style={selectStyle18} disabled={seat18} variant="secondary">18</Button>{' '}
-      <Button value="seat19" onClick={selectSeat19} style={selectStyle19} disabled={seat19} variant="secondary">19</Button>{' '}
-      <Button disabled variant="secondary" >< GiEntryDoor /></Button>{' '}
-      <Button value="seat20" onClick={selectSeat20} style={selectStyle20} disabled={seat20} variant="secondary">20</Button>{' '}
-      <Button value="seat21" onClick={selectSeat21} style={selectStyle21} disabled={seat21} variant="secondary">21</Button>{' '}
-      <Button value="seat22" onClick={selectSeat22} style={selectStyle22} disabled={seat22} variant="secondary">22</Button>{' '}
-      <Button value="seat23" onClick={selectSeat23} style={selectStyle23} disabled={seat23} variant="secondary">23</Button>{' '}
-      <Button value="seat24" onClick={selectSeat24} style={selectStyle24} disabled={seat24} variant="secondary">24</Button>{' '}
-      <Button value="seat25" onClick={selectSeat25} style={selectStyle25} disabled={seat25} variant="secondary">25</Button>{' '}
-      <Button value="seat26" onClick={selectSeat26} style={selectStyle26} disabled={seat26} variant="secondary">26</Button>{' '}
-      <Button value="seat27" onClick={selectSeat27} style={selectStyle27} disabled={seat27} variant="secondary">27</Button>{' '}
-      <Button value="seat28" onClick={selectSeat28} style={selectStyle28} disabled={seat28} variant="secondary">28</Button>{' '}
-      <Button value="seat29" onClick={selectSeat29} style={selectStyle29} disabled={seat29} variant="secondary">29</Button>{' '}
-      <Button value="seat30" onClick={selectSeat30} style={selectStyle30} disabled={seat30} variant="secondary">30</Button>
-    </ButtonGroup>
-  </ButtonToolbar>
-  <ButtonToolbar style={{marginTop:"8px"}}className="justify-content-between" aria-label="Toolbar with Button groups">
-    <ButtonGroup  aria-label="First group">
-      <Button variant="dark" disabled>Selected Seats: {selectedSeats}</Button>{' '}
-      <Button variant="dark" disabled>Amount: Rs {amount}</Button>{' '}
-      <Button variant="outline-danger" onClick={onSubmit} disabled={selectedSeats.length==0}>Book Ticket</Button>
-    </ButtonGroup>
-  </ButtonToolbar>
-  </div>
-     
-      </div>
+    <div style={{minHeight: '500px'}} className = "container">
+          <Helmet>
+            <title> {TITLE} </title> 
+          </Helmet>
+          <CSRFToken />
+          <h1 style={{textAlign:'center'}}>Book Ticket</h1>
+            <div className = "item-group d-flex justify-content-center input-group" >
+              {routes.map((route, index) => {
+                      return (
+                      route.id == routeID ?
+                      <div key={routeID} className="card list-group-item input-group-prepend" style={{ width: "24rem" }}>
+                        <div className="card-body">
+                            <h5 style={{textTransform:"capitalize"}}className="card-title">{route.departureLocation} to {route.destinationLocation}</h5>
+                            <h6 className="card-subtitle mb-2 text-muted">Departure Time: {route.departureTime}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">Arrival Time: {route.arrivalTime}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">Price: {route.price}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">Vehicle ID: {route.vehicleID}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">Departure Date: {route.departureDate}</h6>
+                        </div>
+                    </div> : null
+                      );
+                    })}
+            <div style={{textAlign:'center', marginTop: '8px', marginLeft: '5px'}}className="input-group-prepend">
+                <ButtonToolbar className="mb-3 d-flex justify-content-center" aria-label="Toolbar with Button groups">
+                  <ButtonGroup className="me-2" aria-label="First group">
+                    <Button style={style1} variant="secondary">Selected</Button>{' '}
+                    <Button variant="secondary" disabled>Booked</Button>{' '}
+                    <Button variant="secondary">Available</Button>
+                  </ButtonGroup>
+                </ButtonToolbar>
+                <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
+                <ButtonGroup className="me-2" aria-label="First group">
+                  <Button style={{transform: 'rotate(180deg)'}} variant="secondary" disabled>< GiSteeringWheel /></Button>{' '}
+                  <Button value="seat1" variant="secondary" onClick={selectSeat1} style={selectStyle1} disabled={seat1}>01</Button>{' '}
+                  <Button value="seat2" onClick={selectSeat2} style={selectStyle2} disabled={seat2} variant="secondary">02</Button>{' '}
+                  <Button value="seat3" onClick={selectSeat3} style={selectStyle3} disabled={seat3} variant="secondary">03</Button>{' '}
+                  <Button value="seat4" onClick={selectSeat4} style={selectStyle4} disabled={seat4} variant="secondary">04</Button>{' '}
+                  <Button value="seat5" onClick={selectSeat5} style={selectStyle5} disabled={seat5} variant="secondary">05</Button>{' '}
+                  <Button value="seat6" onClick={selectSeat6} style={selectStyle6} disabled={seat6} variant="secondary">06</Button>{' '}
+                  <Button value="seat7" onClick={selectSeat7} style={selectStyle7} disabled={seat7} variant="secondary">07</Button>{' '}
+                  <Button value="seat8" onClick={selectSeat8} style={selectStyle8} disabled={seat8} variant="secondary">08</Button>{' '}
+                  <Button value="seat9" onClick={selectSeat9} style={selectStyle9} disabled={seat9} variant="secondary">09</Button>{' '}
+                  <Button value="seat10" onClick={selectSeat10} style={selectStyle10} disabled={seat10} variant="secondary">10</Button>{' '}
+                  <Button value="seat11" onClick={selectSeat11} style={selectStyle11} disabled={seat11} variant="secondary">11</Button>{' '}
+                  <Button value="seat12" onClick={selectSeat12} style={selectStyle12} disabled={seat12} variant="secondary">12</Button>{' '}
+                  <Button value="seat13" onClick={selectSeat13} style={selectStyle13} disabled={seat13} variant="secondary">13</Button>{' '}
+                  <Button value="seat14" onClick={selectSeat14} style={selectStyle14} disabled={seat14} variant="secondary">14</Button>{' '}
+                  <Button value="seat15" onClick={selectSeat15} style={selectStyle15} disabled={seat15} variant="secondary">15</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+              <ButtonToolbar
+                className="justify-content-between"
+                aria-label="Toolbar with Button groups"
+              >
+                <ButtonGroup aria-label="First group">
+                  <Button value="seat16" style={selectStyle16} onClick={selectSeat16} disabled={seat16} variant="secondary">16</Button>{' '}
+                  <Button value="seat17" onClick={selectSeat17} style={selectStyle17} disabled={seat17} variant="secondary">17</Button>{' '}
+                  <Button value="seat18" onClick={selectSeat18} style={selectStyle18} disabled={seat18} variant="secondary">18</Button>{' '}
+                  <Button value="seat19" onClick={selectSeat19} style={selectStyle19} disabled={seat19} variant="secondary">19</Button>{' '}
+                  <Button disabled variant="secondary" >< GiEntryDoor /></Button>{' '}
+                  <Button value="seat20" onClick={selectSeat20} style={selectStyle20} disabled={seat20} variant="secondary">20</Button>{' '}
+                  <Button value="seat21" onClick={selectSeat21} style={selectStyle21} disabled={seat21} variant="secondary">21</Button>{' '}
+                  <Button value="seat22" onClick={selectSeat22} style={selectStyle22} disabled={seat22} variant="secondary">22</Button>{' '}
+                  <Button value="seat23" onClick={selectSeat23} style={selectStyle23} disabled={seat23} variant="secondary">23</Button>{' '}
+                  <Button value="seat24" onClick={selectSeat24} style={selectStyle24} disabled={seat24} variant="secondary">24</Button>{' '}
+                  <Button value="seat25" onClick={selectSeat25} style={selectStyle25} disabled={seat25} variant="secondary">25</Button>{' '}
+                  <Button value="seat26" onClick={selectSeat26} style={selectStyle26} disabled={seat26} variant="secondary">26</Button>{' '}
+                  <Button value="seat27" onClick={selectSeat27} style={selectStyle27} disabled={seat27} variant="secondary">27</Button>{' '}
+                  <Button value="seat28" onClick={selectSeat28} style={selectStyle28} disabled={seat28} variant="secondary">28</Button>{' '}
+                  <Button value="seat29" onClick={selectSeat29} style={selectStyle29} disabled={seat29} variant="secondary">29</Button>{' '}
+                  <Button value="seat30" onClick={selectSeat30} style={selectStyle30} disabled={seat30} variant="secondary">30</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+              <ButtonToolbar style={{marginTop:"8px"}}className="justify-content-between" aria-label="Toolbar with Button groups">
+                <ButtonGroup  aria-label="First group">
+                  <Button variant="dark" disabled>Selected Seats: {selectedSeats}</Button>{' '}
+                  <Button variant="dark" disabled>Amount: Rs {amount}</Button>{' '}
+                  <Button variant="outline-danger" onClick={onSubmit} disabled={selectedSeats.length==0}>Book Ticket</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+              </div>
+        </div>
     </div>
   );
 };

@@ -34,8 +34,6 @@ return (
         <Route path='/activate/:id/:uid/:token' element={<EmailVerify />} />
         <Route path='/faq' element={<FAQ />} />
         <Route path='/printticket/:userid/:ticketid' element={<PrintTickets />} />
-        {/* <Route path='/blogs' element={<Blogs />} />
-        <Route path='/sign-up' element={<SignUp />} /> */}
         <Route path='*' element={<PageNotFound />} />
     </Routes>
      <LogosBox />

@@ -1,14 +1,11 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Form, Button, ListGroup } from 'react-bootstrap';
-import { red } from '@mui/material/colors';
-import { Navigate, useNavigate } from 'react-router-dom';
-import addWeeks from "date-fns/addWeeks";
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from '@mui/lab/DatePicker';
-
 
 const LocationOptions=[
   'Achham',
@@ -186,89 +183,85 @@ export default function SearchBox() {
   };
   return (
   
-    <div className = 'list-group d-flex justify-content-center responsive'
-    id = "search-box" >
-      < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
-        <h1>Where will you go next?</h1>
-      </div>  
-      {/* <ListGroup horizontal className='mx-auto'> */}
-      < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
-        <Autocomplete
-          value={departure}
-          onChange={(event, newDepartureValue) => {
-              console.log(newDepartureValue);
-            setDeparture(newDepartureValue);
-          }}
-          inputdeparture={inputdeparture}
-          onInputChange={(event, newInputDepartureValue) => {
-            setInputDeparture(newInputDepartureValue);
-          }}
-          id="search-box-from"
-          options={LocationOptions}
-          sx = {
-            {
-              width: 300
+    <div className = 'list-group d-flex justify-content-center responsive' id = "search-box" >
+        <div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
+          <h1>Where will you go next?</h1>
+        </div>  
+        <div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
+          <Autocomplete
+            value={departure}
+            onChange={(event, newDepartureValue) => {
+                console.log(newDepartureValue);
+              setDeparture(newDepartureValue);
+            }}
+            inputdeparture={inputdeparture}
+            onInputChange={(event, newInputDepartureValue) => {
+              setInputDeparture(newInputDepartureValue);
+            }}
+            id="search-box-from"
+            options={LocationOptions}
+            sx = {
+              {
+                width: 300
+              }
             }
-          }
-          renderInput={(params) => <TextField {...params} label="From" />}
-        />
+            renderInput={(params) => <TextField {...params} label="From" />}
+          />
+        </div>
+        <div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
+          <Autocomplete
+            value={destination}
+            onChange={(event, newDestinationValue) => {
+                console.log(newDestinationValue);
+              setDestination(newDestinationValue);
+            }}
+            inputdestination={inputdestination}
+            onInputChange={(event, newInputDestinationValue) => {
+              setInputDestination(newInputDestinationValue);
+            }}
+            id="search-box-destination"
+            options={LocationOptions}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Destination" />}
+          />
       </div>
       < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
-        <Autocomplete
-          value={destination}
-          onChange={(event, newDestinationValue) => {
-              console.log(newDestinationValue);
-            setDestination(newDestinationValue);
-          }}
-          inputdestination={inputdestination}
-          onInputChange={(event, newInputDestinationValue) => {
-            setInputDestination(newInputDestinationValue);
-          }}
-          id="search-box-destination"
-          options={LocationOptions}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Destination" />}
-        />
-    </div>
-    < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DatePicker
-          disablePast
-          label="Departure Date"
-          openTo="year"
-          views={['year', 'month', 'day']}
-          value={date}
-          onChange={(newDate) => {
-            setDate(newDate);
-            console.log(newDate);
-          }}
-          renderInput = {
-              (params) => < TextField {
-                ...params
-              }
-              sx = {
-                {
-                  width: 300
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            disablePast
+            label="Departure Date"
+            openTo="year"
+            views={['year', 'month', 'day']}
+            value={date}
+            onChange={(newDate) => {
+              setDate(newDate);
+              console.log(newDate);
+            }}
+            renderInput = {
+                (params) => < TextField {
+                  ...params
                 }
-              }
-              />}
-        />
-    </LocalizationProvider>
+                sx = {
+                  {
+                    width: 300
+                  }
+                }
+                />}
+          />
+      </LocalizationProvider>
+      </div>
+      <div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
+        <Button
+          variant=""
+          className="btn btn-danger"
+          type="submit"
+          onClick={onSubmit}
+          size="lg"
+        >
+          Search Bus
+        </Button>
+      </div>
     </div>
-    < div className = 'list-group d-flex justify-content-between align-items-center search-comp' >
-      <Button
-        variant=""
-        className="btn btn-danger"
-        type="submit"
-        // disabled={disable}
-        onClick={onSubmit}
-        size="lg"
-      >
-        Search Bus
-      </Button>
-    </div>
-    {/* </ListGroup> */}
-  </div>
     
   );
 }

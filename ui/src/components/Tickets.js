@@ -23,24 +23,17 @@ const Tickets = () => {
   const [lastName, setLastName] = useState("User");
   const [email, setEmail] = useState("");
   const [userID, setUserId] = useState(id);
-// let routes = [];
-//   const { from, destination } = useParams();
   const [departureLocation, setDepartureLocation] = useState("Kathmandu");
   const [destinationLocation, setDestinationLocation] = useState("Gulmi");
   const [dateOfJourney, setDateOfJourney] = useState("2022-05-27");
   const [username, setUsername] = useState("");
-//   const [routesData, setRoutesData]= useState([]);
-//   const [ticketData, setTicketData] = useState([]);
-let routeData = [];
-let ticketData = [];
+  let routeData = [];
+  let ticketData = [];
   const firstUpdate = useRef(true);
-//   const [routeID, setRouteID] = useState(null);
   const [disable, setDisable] = useState(false);
-//   const [filteredResults, setFilteredResults] = useState([]);
-let loaded = true;
+  let loaded = true;
   const onSubmit = (e) => {
       e.preventDefault();
-          // navigate('/result/' + departureLocation + '/' + destinationLocation);
           window.location.href = '/result/' + departureLocation + '/' + destinationLocation + '/' + dateOfJourney;
   };
 
@@ -64,7 +57,6 @@ let loaded = true;
       setLastName(res.data.last_name);
       setEmail(res.data.email);
     }).catch(console.error);
-
   };
 
   const onUpdate = () => {
@@ -78,19 +70,8 @@ let loaded = true;
       swal("Success!", "Your profile has been updated!", "success");
     }).catch(console.error);
   };
-//    const getRoutes = (e) => {
-//        API.get("routes/")
-//            .then((res) => {
-//             //    setRoutesData(res.data);
-//             routeData=res.data;
-//             console.log(routeData);
-//             mergeRoute();
-//            })
-//            .catch(console.error);
-//    };
-   const getUsername = () => {
+  const getUsername = () => {
        API.get("loggeduser/1/").then(res => {
-           // setUsername(res.data.username);
            setUsername(res.data.username);
            console.log("Username" + username);
        }).catch(console.error);
@@ -99,7 +80,7 @@ let loaded = true;
    const changePassword = ( ) => {
      window.href="127.0.0.1:8000/password/change/";
    }
-const onDelete = (id) => {
+  const onDelete = (id) => {
     swal({
             title: "Are you sure?",
             text: "Once cancelled, it cannot be recovered!",
@@ -117,67 +98,58 @@ const onDelete = (id) => {
                 swal("Cancel process cancelled!");
             }
         });
-    // API.delete(`routes/${id}/`).then((res) => refreshRoutes());
 };
   return (
     <div style={{minHeight:'500px'}} className = "container mt-5 resultContainer mw-100 mh-100">
       <Helmet>
         <title> {TITLE} </title> 
       </Helmet>
-      < div className = "row d-flex justify-content-center result-rows" >
+      <div className = "row d-flex justify-content-center result-rows" >
         <div className="col-md-4">
-          {/* <div className="card">
-                <div className="card-body mt-4"> */}
-                  <Form className="">
-                     <h3 className="mb-3">Your Details</h3>
-                    <Form.Group className="mb-3">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control placeholder={username} disabled />
-                  </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form className="">
+              <h3 className="mb-3">Your Details</h3>
+            <Form.Group className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control placeholder={username} disabled />
+          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
 
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control value={email} type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter email" />
-                      <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                      </Form.Text>
-                    </Form.Group>
-                    <Row className="mb-3">
-                    <Col>
-                      <Form.Control value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder="First name" />
-                    </Col>
-                    <Col>
-                      <Form.Control value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder="Last name" />
-                    </Col>
-                  </Row>
-                   <div className="float-right">
-                      <Button
-                        variant="outline-info"
-                        class="btn btn-outline-info"
-                        type="submit"
-                        onClick={onUpdate}
-                        className="mx-2"
-                      >
-                        Update Details
-                      </Button>
-                      <Button
-                        variant="warning"
-                        class="btn-warning"
-                        type="button"
-                        onClick={() => changePassword()}
-                        className="mx-2"
-                        href="/password/change/"
-                      >
-                        Change Password
-                      </Button>
-                    </div>
-
-                  </Form>
-                  
-
-                {/* </div>
-              </div> */}
-          {/* <h3 className="float-left">Create a new Route</h3> */}
+              <Form.Label>Email address</Form.Label>
+              <Form.Control value={email} type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+            <Row className="mb-3">
+            <Col>
+              <Form.Control value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder="First name" />
+            </Col>
+            <Col>
+              <Form.Control value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder="Last name" />
+            </Col>
+          </Row>
+            <div className="float-right">
+              <Button
+                variant="outline-info"
+                class="btn btn-outline-info"
+                type="submit"
+                onClick={onUpdate}
+                className="mx-2"
+              >
+                Update Details
+              </Button>
+              <Button
+                variant="warning"
+                class="btn-warning"
+                type="button"
+                onClick={() => changePassword()}
+                className="mx-2"
+                href="/password/change/"
+              >
+                Change Password
+              </Button>
+            </div>
+          </Form>
           <Form onSubmit={onSubmit} className="mt-4">
           <h3 className="mb-3">Search ticket for next travel</h3>
             <Form.Group className="mb-3" controlId="formBasicGenre">
@@ -514,7 +486,6 @@ const onDelete = (id) => {
                 variant="outline-danger"
                 className="btn btn-outline-danger mx-1"
                 type="submit"
-                // disabled={disable}
                 onClick={onSubmit}
               >
                 Search
@@ -578,10 +549,6 @@ const onDelete = (id) => {
                                     <input value="http://127.0.0.1:8000/ticket" type="hidden" name="fu" />
                                     <input hidden={ticket.payment} className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
                                 </form>
-                                
-                                
-                                {/* <Button style={{marginRight: '2px'}}variant="success" className="btn" disabled={ticket.payment}>Pay Now</Button> */}
-                                {/* <Button variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button> */}
                             </div>
                             <Button hidden={!ticket.payment} className="btn btn-info" onClick={() => {window.location.href='/printticket/'+userID+'/'+`${ticket.id}`} }> Print Ticket </Button>
                             <Button style={{marginTop: '5px'}} variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>

@@ -8,21 +8,14 @@ import LogosBox from "./partners";
 import Footer from "./footer";
 const TITLE = 'Home';
 const Home = () => (
-<div>
-    <Helmet>
-        <title>{TITLE}</title>
-    </Helmet>
-    < div className = "home"
-    style = {
-        {
-            backgroundImage: '../../images/Cover.png'
-        }
-    } >
-       
-        <SearchBox />
+    <div>
+        <Helmet>
+            <title>{TITLE}</title>
+        </Helmet>
+        <div className = "home" style = {{ backgroundImage: '../../images/Cover.png'}} >
+            <SearchBox />
+        </div>
     </div>
-    
-</div>
 );
 
 export default Home;
