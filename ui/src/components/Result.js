@@ -7,6 +7,7 @@ import { Redirect, useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const TITLE = 'Your Results';
 const Result = () => {
@@ -50,6 +51,18 @@ let loaded = true;
       })
     }
   var i =0;
+  const OnBook = () => {
+    if(username === ""){
+       swal({
+         title: "Error!",
+         text: "Please login to book ticket!",
+         icon: "error",
+       });
+    }
+    else{
+      navigate('/book/' + username + '/' + route.id)
+    }
+  }
   const refreshRoutes = () => {
         API.get("routes/")
         .then((res) => {
@@ -454,7 +467,7 @@ let loaded = true;
                       <i
                         className="fa fa-ticket text-danger d-inline mx-3"
                         aria-hidden="true"
-                        onClick={() => navigate('/book/'+username+'/'+route.id)}
+                        onClick={OnBook}
                       ></i>
                     </td>
                   </tr>
