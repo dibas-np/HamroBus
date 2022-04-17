@@ -7,8 +7,14 @@ body {
 }
 
 .login {
-    margin: 100px;
+    margin: 80px;
     margin-bottom: 120px;
+    background: rgba(146, 227, 146, 0.3);
+    border-radius: 10px;
+}
+.loginform {
+    padding: 30px;
+    border-radius: 25px;
 }
 
 .login h1 {
@@ -73,13 +79,14 @@ span.psw {
     color: #37f2c3;
     margin-left: 16px;
     font-size: 15px;
+    line-height: 30px;
     margin-top: -16px;
 }
 
 .login a {
     text-decoration: none;
-    font-weight: 700;
-    font-size: 19;
+    font-weight: 500;
+    font-size: 14px;
     color: #f1f6f7;
 }
 

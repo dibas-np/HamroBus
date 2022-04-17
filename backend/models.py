@@ -1,3 +1,4 @@
+import email
 from django.db import models
 from backend.locationlist import LocationChoices
 from django.contrib.auth import get_user_model
@@ -89,7 +90,10 @@ class Ticket(models.Model):
 class SystemInfo(models.Model):
     about = models.TextField()
     weblink = models.CharField(max_length=100)
-
+    email = models.EmailField(default="")
+    phone = models.CharField(max_length=20,default="")
+    address = models.CharField(max_length=100,default="")
+    
     def __str__(self):
         return self.about
 

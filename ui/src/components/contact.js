@@ -16,6 +16,20 @@ const Contact = () => {
     const [email, setEmail] = React.useState('');
     const [message, setMessage] = React.useState('');
 
+    const [systemEmail, setSystemEmail] = React.useState('');
+    const [systemPhone, setSystemPhone] = React.useState('');
+    const [systemAddress, setSystemAddress] = React.useState('');
+
+    const ViewContact = () => {
+      
+        API.get("systeminfo/1/").then(res => {
+          Swal.fire({
+            title: 'Contact Information',
+            text: "Email: " + res.data.email + "\n" + "Phone: " + res.data.phone + "\n" + "Address: " + res.data.address,
+          })
+        });
+    }
+    
     const handleOnSubmit = (e) => {
     e.preventDefault();
     let item = {name, email, message}
@@ -78,6 +92,7 @@ const Contact = () => {
           <Form.Control value={message} onChange={(e) => setMessage(e.target.value)} name="message" as="textarea"/>
         </Form.Group>
           <Button type='submit' className='btn-danger'>Submit</Button>
+          <Button type='button' className='btn-info m-1' onClick={()=>ViewContact()}>Contact Info</Button>
         </Form>
       </div>
   );

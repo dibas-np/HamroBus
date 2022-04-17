@@ -37,7 +37,9 @@ const Result = () => {
       })
     }
   var i =0;
-  const OnBook = () => {
+  const OnBook = (e) => {
+    getUsername();
+    console.log(username);
     if(username === ""){
        swal({
          title: "Error!",
@@ -45,8 +47,8 @@ const Result = () => {
          icon: "error",
        });
     }
-    else{
-      navigate('/book/' + username + '/' + route.id)
+    if(username !== ""){
+      navigate('/book/' + username + '/' + e)
     }
   }
   const refreshRoutes = () => {
@@ -369,7 +371,10 @@ const Result = () => {
                       <i
                         className="fa fa-ticket text-danger d-inline mx-3"
                         aria-hidden="true"
-                        onClick={OnBook}
+                        onClick = {
+                          // () => navigate('/book/' + username + '/' + route.id)
+                          ()=>OnBook(route.id)
+                        }
                       ></i>
                     </td>
                   </tr>
