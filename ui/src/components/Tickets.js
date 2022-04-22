@@ -29,7 +29,7 @@ const Tickets = () => {
   const [dateOfJourney, setDateOfJourney] = useState("2022-05-27");
   const [username, setUsername] = useState("");
   const [publicurl, setPublicurl] = useState("");
-  
+  let payment = true;
   let routeData = [];
   let ticketData = [];
   const firstUpdate = useRef(true);
@@ -50,7 +50,7 @@ const Tickets = () => {
       setPublicurl(res.data.paymentapi);
     }).catch(console.error);
   }, []);
-
+  
   const onKhalti=(id,amount)=> {
 
     console.log(id);
@@ -59,17 +59,24 @@ const Tickets = () => {
     let config = {
       // replace this key with yours
       "publicKey": publicurl,
-      "productIdentity": productID,
+      "productIdentity": id,
       "productName": "Hamro Bus Ticket",
       "productUrl": "http://127.0.0.1:8000/",
       "eventHandler": {
         onSuccess(payload) {
           // hit merchant api for initiating verfication
+           let item = {
+             payment
+           }
+           getUsername();
+           API.patch(`tickets/${payload.product_identity}/`, item).then((res) => window.location.reload())
+             .catch((err) => console.log(err));
           console.log(payload);
         },
         // onError handler is optional
         onError(error) {
           // handle errors
+          swal("Error!", error, "error");
           console.log(error);
         },
         onClose() {
@@ -81,7 +88,7 @@ const Tickets = () => {
     let checkout = new KhaltiCheckout(config);
     console.log(amount);
     checkout.show({
-      amount: amount,
+      amount: 1000,
     });
   };
   const refreshRoutes = () => {
