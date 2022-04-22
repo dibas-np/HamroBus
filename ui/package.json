@@ -46,6 +46,7 @@
     "font-awesome": "^4.7.0",
     "fs": "^0.0.1-security",
     "jquery": "^3.6.0",
+    "khalti-checkout-web": "^2.2.0",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "react-bootstrap": "^2.1.1",

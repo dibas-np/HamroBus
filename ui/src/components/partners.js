@@ -23,7 +23,7 @@ export default function LogosBox() {
                     <a href="https://amadeus.com/en"><img src="https://www.namastenepaltravels.com/themes/images/amadeus-training-in-nepal.png" class="img-fluid" alt="Amadeus Training in Nepal logo"/></a>
                 </div>
                 <div className="col-lg-2 col-md-4 col-6">
-                    <a href="https://www.imepay.com.np/"><img src="https://www.imepay.com.np/wp-content/themes/WPSTARTER/pagoda_s/img/logo/ime-red.png" class="img-fluid" alt="IME Pay logo"/></a>
+                    <a href="https://www.imepay.com.np/"><img src="https://www.imepay.com.np/assets/logo/ime-main.svg" class="img-fluid" alt="IME Pay logo"/></a>
                 </div>
             </div>
         </div>

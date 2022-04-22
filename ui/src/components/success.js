@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from 'react-bootstrap';
 import API from './API';
 import { Helmet } from 'react-helmet';
+import { getRadioUtilityClass } from '@mui/material';
 
 const TITLE = 'Payment Verify';
 const Success = () => {
@@ -14,14 +15,17 @@ const Success = () => {
   const [uid, setUid] = React.useState(0);
   const updatePayment = () => {
       let item = { payment }
-      API.patch(`tickets/${id}/`, item).then((res) => navigateTo())
-      .catch((err) => console.log(err));
       getUsername();
+      API.patch(`tickets/${id}/`, item).then((res) => navigate('/'))
+      .catch((err) => console.log(err));
       navigate('/');  
   };
   const navigateTo = () => {
       navigate('/'+uid+'/ticket');
   }
+  useEffect(() => {
+    getUsername();
+    }, []);
   useEffect(() => {
         updatePayment();
     }, []);

@@ -7,6 +7,7 @@ import { Redirect, useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router-dom";
+import KhaltiCheckout from "khalti-checkout-web";
 
 const TITLE = 'Your Tickets';
 const Tickets = () => {
@@ -27,10 +28,14 @@ const Tickets = () => {
   const [destinationLocation, setDestinationLocation] = useState("Gulmi");
   const [dateOfJourney, setDateOfJourney] = useState("2022-05-27");
   const [username, setUsername] = useState("");
+  const [publicurl, setPublicurl] = useState("");
+  
   let routeData = [];
   let ticketData = [];
   const firstUpdate = useRef(true);
   const [disable, setDisable] = useState(false);
+  const [productID, setProductID] = useState(0);
+  const [productamount, setProductAmount] = useState(1000);
   let loaded = true;
   const onSubmit = (e) => {
       e.preventDefault();
@@ -40,13 +45,52 @@ const Tickets = () => {
   useEffect(() => {
     refreshRoutes();
   }, []);
-  
+  useEffect(() => {
+    API.get("systeminfo/1/").then(res => {
+      setPublicurl(res.data.paymentapi);
+    }).catch(console.error);
+  }, []);
+
+  const onKhalti=(id,amount)=> {
+
+    console.log(id);
+    setProductID(id);
+    setProductAmount(amount);
+    let config = {
+      // replace this key with yours
+      "publicKey": publicurl,
+      "productIdentity": productID,
+      "productName": "Hamro Bus Ticket",
+      "productUrl": "http://127.0.0.1:8000/",
+      "eventHandler": {
+        onSuccess(payload) {
+          // hit merchant api for initiating verfication
+          console.log(payload);
+        },
+        // onError handler is optional
+        onError(error) {
+          // handle errors
+          console.log(error);
+        },
+        onClose() {
+          console.log('widget is closing');
+        }
+      },
+      "paymentPreference": ["KHALTI", "EBANKING", "MOBILE_BANKING", "CONNECT_IPS", "SCT"],
+    };
+    let checkout = new KhaltiCheckout(config);
+    console.log(amount);
+    checkout.show({
+      amount: amount,
+    });
+  };
   const refreshRoutes = () => {
         API.get("tickets/")
         .then((res) => {
            setRoutes(res.data);
             getUsername();
             getUserData();
+            getURL();
         })
         .catch(console.error);
       
@@ -56,6 +100,11 @@ const Tickets = () => {
       setFirstName(res.data.first_name);
       setLastName(res.data.last_name);
       setEmail(res.data.email);
+    }).catch(console.error);
+  };
+  const getURL = () => {
+    API.get("systeminfo/1/").then(res => {
+      setPublicurl(res.data.paymentapi);
     }).catch(console.error);
   };
 
@@ -536,7 +585,7 @@ const Tickets = () => {
                                 <h5>Arrival Time: {ticket.arrivalTime}</h5>
                             </div>
                             <div className="col-md-6">
-                                < form hidden={ticket.payment} className="btn btn-success" action = "https://uat.esewa.com.np/epay/main"
+                                < form hidden={ticket.payment} className="btn" action = "https://uat.esewa.com.np/epay/main"
                                 method = "POST" >
                                     <input value={ticket.amount} name="tAmt" type="hidden" />
                                     <input value={ticket.amount} name="amt" type="hidden" />
@@ -546,9 +595,11 @@ const Tickets = () => {
                                     <input value="EPAYTEST" name="scd" type="hidden" />
                                     <input value={ticket.id} name="pid" type="hidden" />
                                     <input value="http://127.0.0.1:8000/success" type="hidden" name="su" />
-                                    <input value="http://127.0.0.1:8000/ticket" type="hidden" name="fu" />
-                                    <input hidden={ticket.payment} className="btn btn-success" value="   Pay Now    " type="submit" disabled={ticket.payment} />
+                                    <input value="http://127.0.0.1:8000" type="hidden" name="fu" />
+                                    <input hidden={ticket.payment} className="btn btn-success" value="Pay with eSewa" type="submit" disabled={ticket.payment} />
+                                    {/* <input hidden={ticket.payment} onClick={()=>onKhalti(ticket.id,ticket.amount*100)} className="btn btn-warning" disabled={ticket.payment} value="Pay with Khalti"/> */}
                                 </form>
+                                 <button hidden={ticket.payment} onClick={()=>onKhalti(ticket.id,ticket.amount*100)} className="btn btn-warning">Pay with Khalti</button>
                             </div>
                             <Button hidden={!ticket.payment} className="btn btn-info" onClick={() => {window.location.href='/printticket/'+userID+'/'+`${ticket.id}`} }> Print Ticket </Button>
                             <Button style={{marginTop: '5px'}} variant="danger" className="btn" onClick={() => onDelete(ticket.id)}>Cancel Ticket</Button>
