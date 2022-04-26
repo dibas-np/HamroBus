@@ -2,6 +2,8 @@ import email
 from django.db import models
 from backend.locationlist import LocationChoices
 from django.contrib.auth import get_user_model
+import datetime
+from django.core.validators import MinValueValidator
 
 VEHICLE_CHOICES = [
     ('car', 'Car'),
@@ -15,7 +17,7 @@ class Route(models.Model):
     destinationLocation = models.CharField(max_length=50,choices=LocationChoices,default="Pokhara")
     departureTime = models.TimeField(default='00:00:00')
     arrivalTime = models.TimeField(default='00:00:00')
-    departureDate = models.DateField()
+    departureDate = models.DateField(validators=[MinValueValidator(datetime.date.today)],default=datetime.date.today)
     price = models.IntegerField()
     vehicleID = models.CharField(max_length=50)
     seat1 = models.BooleanField(default=False)
