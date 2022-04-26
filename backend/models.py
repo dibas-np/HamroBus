@@ -84,6 +84,8 @@ class Ticket(models.Model):
     departureDate = models.DateField()
     vehicleID = models.CharField(max_length=50)
     booked_date = models.DateTimeField(auto_now_add=True)
+
+    
     
 
     def __str__(self):

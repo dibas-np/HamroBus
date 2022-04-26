@@ -43,7 +43,7 @@ admin.site.register(EmailVerify,EmailVerifyAdmin)
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('username','routeId','bookedSeat1','bookedSeat2','payment','amount', 'destinationLocation','departureLocation','arrivalTime','departureTime','departureDate','vehicleID','booked_date')
-    ordering = ('departureDate','arrivalTime','-booked_date')
+    ordering = ('-booked_date','departureDate','arrivalTime')
     search_fields = ('username','vehicleID','departureLocation','destinationLocation')
     list_filter = (('departureDate',DateRangeFilter),('booked_date',DateRangeFilter),'booked_date')
     fieldsets = (

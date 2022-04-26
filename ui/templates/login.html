@@ -46,6 +46,13 @@
                     <label>
                         <input type="checkbox" name="remember" /> Remember Password
                     </label>
+                    <div style="padding-top:20px;padding-bottom: 5px;">
+                        {% for message in messages %}
+                        {% if 'info' in message.tags %}
+                        <p style="color: #FF0000;">{{message}}</p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                     <button type="submit">LOGIN</button>
                 </div>
                 <div class="mt-3">

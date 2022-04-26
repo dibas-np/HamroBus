@@ -30,9 +30,9 @@ export default function EmailVerify() {
      const getVerifyData = () => {
          API.get("emailverify/?username="+id+"/")
              .then((res) => {
-                setUserID(res.data[0].userid);
-                setToken(res.data[0].token);
-                setUsername(res.data[0].username);
+                setUserID(res.data[res.data.length-1].userid);
+                setToken(res.data[res.data.length-1].token);
+                setUsername(res.data[res.data.length-1].username);
                  getUserData();
              })
              .catch(console.error);
