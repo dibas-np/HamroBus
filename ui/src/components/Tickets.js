@@ -88,7 +88,7 @@ const Tickets = () => {
     let checkout = new KhaltiCheckout(config);
     console.log(amount);
     checkout.show({
-      amount: amount,
+      amount: 1000,
     });
   };
   const refreshRoutes = () => {
