@@ -11,13 +11,13 @@
 
 ## Install
 
-```sh npm install
+```npm install
  
 ```
 
 ## Usage
 
-```sh npm run dev
+```npm run dev
  
 ```
 
